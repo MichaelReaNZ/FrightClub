@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //[SerializeField] private FieldOfView _fieldOfView;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Movement
         rb.MovePosition(rb.position + _movement * (moveSpeed * Time.fixedDeltaTime));
+        
+       // _fieldOfView.SetOrigin(transform.position);
     }
 }
