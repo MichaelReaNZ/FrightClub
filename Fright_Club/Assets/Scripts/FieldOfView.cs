@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
+    public float fov = 90f;
+    public int rayCount;
+    public float viewDistance;
+    
     private  Mesh mesh;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +20,14 @@ public class FieldOfView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float fov = 90f;
+        // fov = 90f;
+        // viewDistance = 50f;
+        // rayCount = 50;
+        
         Vector3 origin = Vector3.zero;
-        int rayCount = 2;
         float angle = 0f;
         float angleIncrease = fov / rayCount;
-        float viewDistance = 50f;
-
+        
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
         int[] triangles = new int[rayCount * 3];
@@ -33,6 +39,18 @@ public class FieldOfView : MonoBehaviour
         for (int i = 0; i <= rayCount; i++)
         {
             Vector3 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance);
+            if(raycastHit2D.collider == null)
+            {
+                //no hit then max distance
+                vertex = origin + GetVectorFromAngle(angle) * viewDistance;
+            }
+            else
+            {
+                //hit object, lands on point it hits
+                vertex = raycastHit2D.point;
+            }
+            
             vertices[vetexIndex] = vertex;
 
             if (i > 0)
