@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    private float fov;
+    public float fov;
     
-    private float viewDistance;
-    private float startingAngle;
+    public float viewDistance;
+    public float startingAngle;
     private Vector3 origin;
     
     //[SerializeField] private LayerMask layerMask;
@@ -21,13 +21,15 @@ public class FieldOfView : MonoBehaviour
         fov = 90f;
         origin = Vector3.zero;
         startingAngle = 0f;
+        
+        float angle = startingAngle;
     }
 
     // Update is called once per frame
     void Update()
     { 
-        int rayCount = 100;
-        float angle = startingAngle;
+        int rayCount = 200;
+       float angle = startingAngle;
         float angleIncrease = fov / rayCount;
         viewDistance = 50;
         

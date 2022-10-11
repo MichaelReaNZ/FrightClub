@@ -17,16 +17,20 @@ public class PlayerAim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // //get the aim direction from the player to the mouse position
-        // Vector3 mousePos = Input.mousePosition;
-        // //normalize the mouse position
-        // mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        // //get the direction from the player to the mouse position
-        // Vector3 aimDirection = (mousePos - transform.position).normalized;
+        //get the aim direction from the player to the mouse position
+        Vector3 mousePos = Input.mousePosition;
+        //normalize the mouse position
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        //get the direction from the player to the mouse position
+        Vector3 aimDirection = (mousePos - transform.position).normalized;
         
-       // _fieldOfView.SetAimDirection(aimDirection);
+        //offset aim direction by 90 degrees
+        Vector3 aimDirectionOffset = Quaternion.Euler(0, 0, 90) * aimDirection;
+        
+        
+        
+       _fieldOfView.SetAimDirection(aimDirectionOffset);
         _fieldOfView.SetOrigin(transform.position);
 
-        
     }
 }
