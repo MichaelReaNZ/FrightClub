@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
-    [SerializeField] private FieldOfView _fieldOfView;
+    [SerializeField] private FieldOfViewOld _fieldOfView;
     
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class PlayerAim : MonoBehaviour
         
         
        _fieldOfView.SetAimDirection(aimDirectionOffset);
-        _fieldOfView.SetOrigin(transform.position);
+        //_fieldOfView.SetOrigin(transform.position);
 
     }
 }

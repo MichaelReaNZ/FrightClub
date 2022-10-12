@@ -5,18 +5,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //[SerializeField] private FieldOfView _fieldOfView;
+    Camera viewCamera;
+    public float moveSpeed = 5f;
+    
+    public Rigidbody rigidbody;
+
+    private Vector3 _movement;
+    
+   // [SerializeField] private FieldOfViewOld _fieldOfView;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody>();
     }
 
-    public float moveSpeed = 5f;
-    
-    public Rigidbody2D rb;
 
-    private Vector2 _movement;
     // Update is called once per frame
     void Update()
     {
@@ -29,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Movement
-        rb.MovePosition(rb.position + _movement * (moveSpeed * Time.fixedDeltaTime));
+        rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
         
-       // _fieldOfView.SetOrigin(transform.position);
+      //  _fieldOfView.SetOrigin(transform.position);
     }
 }
