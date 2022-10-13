@@ -18,6 +18,8 @@ public class Monster : MonoBehaviour
     //Speed and Patrol state
     private float Speed = 0.03f; //ADJUST BASED ON SIZE OF GAME
     private bool isPatrolling;
+    public int PatrolRadius;
+    private bool isLeftFacing;
     private bool isIlluminated;
 
     // Start is called before the first frame update
@@ -27,7 +29,9 @@ public class Monster : MonoBehaviour
         StartingPosition = this.transform.position;
         isPatrolling = true;
         isIlluminated = false;
+        isLeftFacing = true;
         DetectionRadius = 100;
+        PatrolRadius = 50;
     }
 
     // Update is called once per frame
@@ -75,7 +79,31 @@ public class Monster : MonoBehaviour
     // Move along set routes : TO BE IMPLEMENTED AT A LATER PROTOTYPE
     void Patrol()
     {
-
+        Vector2 NewLocation = StartingPosition;
+        if( isLeftFacing )
+        {
+            if (this.transform.position.x < StartingPosition.x + PatrolRadius)
+            {
+                NewLocation.x = StartingPosition.x + 50;
+                this.transform.position = Vector2.MoveTowards(transform.position, NewLocation, Speed);
+            }
+            else
+            {
+                isLeftFacing = false;
+            }
+        }
+        else
+        {
+            if (this.transform.position.x > StartingPosition.x - PatrolRadius)
+            {
+                NewLocation.x = StartingPosition.x - 50;
+                this.transform.position = Vector2.MoveTowards(transform.position, NewLocation, Speed);
+            }
+            else
+            {
+                isLeftFacing = true;
+            }
+        }
     }
 
     //Changes sprites based on light level

@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour
     Camera viewCamera;
     public float moveSpeed = 5f;
     
-    public Rigidbody rigidbody;
+    public Rigidbody2D rigidbody;
 
-    private Vector3 _movement;
+    private Vector2 _movement;
     public int PlayerHealth;
     
    // [SerializeField] private FieldOfViewOld _fieldOfView;
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         PlayerHealth = 3;
-        rigidbody = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
 

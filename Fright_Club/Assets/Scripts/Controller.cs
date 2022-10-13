@@ -5,14 +5,14 @@ public class Controller : MonoBehaviour
 {
     public float moveSpeed = 5f;
     
-    Rigidbody rigidbody;
+    Rigidbody2D rigidbody;
     Camera viewCamera;
-    Vector3 velocity;
+    Vector2 velocity;
     
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody2D>();
         viewCamera = Camera.main;
     }
 

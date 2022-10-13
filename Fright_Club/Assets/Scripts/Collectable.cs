@@ -17,9 +17,9 @@ public class Collectable : MonoBehaviour
     }
 
     //Destroys this on collision with the player
-    private void OnCollisionEnter( Collision objectColliding )
+    private void OnCollisionEnter2D( Collision2D objectColliding )
     {
-        if (objectColliding.gameObject.tag == "Player")
+        if ( objectColliding.gameObject.CompareTag("Player") )
         {
             Destroy(this.gameObject);
         }
