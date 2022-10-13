@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rigidbody;
 
     private Vector2 _movement;
+    private Vector2 StartingPosition;
     public int PlayerHealth;
     
    // [SerializeField] private FieldOfViewOld _fieldOfView;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerHealth = 3;
         rigidbody = GetComponent<Rigidbody2D>();
+        StartingPosition = this.transform.position;
     }
 
 
@@ -37,5 +39,14 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
         
       //  _fieldOfView.SetOrigin(transform.position);
+    }
+
+    private void OnCollision2D ( Collision2D objectColliding )
+    {
+        if (objectColliding.gameObject.CompareTag("Enemy"))
+        {
+            this.transform.position = StartingPosition;
+            PlayerHealth--;
+        }
     }
 }
