@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Health
+  - Collectable
   layers:
   - Default
   - TransparentFX

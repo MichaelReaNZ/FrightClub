@@ -5,15 +5,18 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     //Textures to be rendered
-    public Sprite darkSprite;
-    public Sprite lightSprite;
+    private Sprite darkSprite;
+    private Sprite lightSprite;
 
     //Positions of player and monster
     private Vector2 PlayerPosition;
     private Vector2 StartingPosition;
 
+    //Detection Radius
+    private int DetectionRadius;
+
     //Speed and Patrol state
-    private float Speed = 0.002f; //ADJUST BASED ON SIZE OF GAME
+    private float Speed = 0.03f; //ADJUST BASED ON SIZE OF GAME
     private bool isPatrolling;
     private bool isIlluminated;
 
@@ -24,6 +27,7 @@ public class Monster : MonoBehaviour
         StartingPosition = this.transform.position;
         isPatrolling = true;
         isIlluminated = false;
+        DetectionRadius = 100;
     }
 
     // Update is called once per frame
@@ -36,8 +40,8 @@ public class Monster : MonoBehaviour
         //If illuminated, allows movement
         if (!isIlluminated)
         {
-            if ((this.transform.position.x <= PlayerPosition.x + 5 && this.transform.position.y <= PlayerPosition.y + 5) &&
-                (this.transform.position.x >= PlayerPosition.x - 5 && this.transform.position.y >= PlayerPosition.y - 5))
+            if ((this.transform.position.x <= PlayerPosition.x + DetectionRadius && this.transform.position.y <= PlayerPosition.y + DetectionRadius) &&
+                (this.transform.position.x >= PlayerPosition.x - DetectionRadius && this.transform.position.y >= PlayerPosition.y - DetectionRadius))
             {
                 isPatrolling = false;
                 Attack();

@@ -11,11 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rigidbody;
 
     private Vector3 _movement;
+    public int PlayerHealth;
     
    // [SerializeField] private FieldOfViewOld _fieldOfView;
     // Start is called before the first frame update
     void Start()
     {
+        PlayerHealth = 3;
         rigidbody = GetComponent<Rigidbody>();
     }
 
