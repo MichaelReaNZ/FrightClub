@@ -9,42 +9,47 @@ public class GameManager : MonoBehaviour
 {
     public int CollectableCount;
     public int PlayerHealth;
-    private bool GameIsActive;
-    public TextMeshProUGUI GameOverText;
-    public TextMeshProUGUI VictoryText;
-    public Button RestartBtn;
+    private bool gameIsActive;
+    public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI victoryText;
+    public Button restartBtn;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        VictoryText.GameObject.SetActive(false);
-        GameOverText.GameObject.SetActive(false);
-        RestartBtn.GameObject.SetActive(false);
-        GameIsActive = true;
+        gameOverText = GameObject.FindGameObjectWithTag("GameOver");
+        gameOverText.gameObject.SetActive(false);
+        victoryText = GameObject.FindGameObjectWithTag("Victory");
+        victoryText.gameObject.SetActive(false);
+        restartBtn = GameObject.FindGameObjectWithTag("Restart");
+        restartBtn.gameObject.SetActive(false);
+        gameIsActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
         PlayerHealth = GameObject.FindGameObjectsWithTag("Health").Length;
 
         if (CollectableCount == 0) // Victory Condition
         {
-            GameIsActive = false;
-            VictoryText.GameObject.SetActive(true);
-            RestartBtn.GameObject.SetActive(true);
+            gameIsActive = false;
+            victoryText.gameObject.SetActive(true);
+            restartBtn.gameObject.SetActive(true);
         }
-        else 
+        else
         {
-            
+
         }
 
         if (PlayerHealth == 0) // Defeat Condition
         {
-            GameIsActive = false;
-            GameOverText.GameObject.SetActive(true);
-            RestartBtn.GameObject.SetActive(true);
+            gameIsActive = false;
+            gameOverText.gameObject.SetActive(true);
+            restartBtn.gameObject.SetActive(true);
         }
         else
         {
