@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 StartingPosition;
     public int PlayerHealth;
     
-   // [SerializeField] private FieldOfViewOld _fieldOfView;
+    [SerializeField] private FieldOfView _fieldOfView;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
         }
         
-      //  _fieldOfView.SetOrigin(transform.position);
+        _fieldOfView.SetOrigin(rigidbody.position);
     }
 
     private void OnCollisionEnter2D ( Collision2D objectColliding )

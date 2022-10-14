@@ -33,6 +33,19 @@ public class FieldOfView : MonoBehaviour
 
     private void Update()
     {
+        //mouse position
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //from
+        Vector3 fromPoint = transform.position;
+       
+        //to 
+        Vector3 toPoint = mousePos;
+        
+        Debug.DrawLine(fromPoint,toPoint,Color.red);
+        
+        //make the flash light look at direction of the mouse
+        //viewMeshFilter.transform.LookAt(toPoint);
+     
     }
 
     IEnumerator FindTargetsWithDelay(float delay)
@@ -68,6 +81,20 @@ public class FieldOfView : MonoBehaviour
             }
         }
     }
+    
+    // void DrawLine(Vector2 start, Vector2 end, Color color, float duration = 0.2f)
+    // {
+    //     GameObject myLine = new GameObject();
+    //     myLine.transform.position = start;
+    //     myLine.AddComponent<LineRenderer>();
+    //     LineRenderer lr = myLine.GetComponent<LineRenderer>();
+    //     lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+    //     lr.SetColors(color, color);
+    //     lr.SetWidth(1000000.1f, 1000000.1f);
+    //     lr.SetPosition(0, start);
+    //     lr.SetPosition(1, end);
+    //     GameObject.Destroy(myLine, duration);
+    // }
 
     void DrawFieldOfView()
     {
@@ -82,7 +109,11 @@ public class FieldOfView : MonoBehaviour
             // angle = angle + 180;
             // if (angle < 0) angle += 360;
             //
-            Debug.DrawLine(transform.position, transform.position + DirectionFromAngle(angle, true) * viewRadius, Color.red);
+            //draw a red line in game to visualize the angle
+           // DrawLine(transform.position, transform.position + DirectionFromAngle(angle, true) * viewRadius, Color.red);
+           
+           Debug.DrawLine(transform.position,transform.position + DirectionFromAngle(angle, true) * viewRadius,Color.yellow);
+           
             ViewCastInfo newViewCast = ViewCast(angle);
             viewPoints.Add(newViewCast.point);
         }
@@ -135,11 +166,21 @@ public class FieldOfView : MonoBehaviour
             Mathf.Cos(angleDeg * Mathf.Deg2Rad)); //, Mathf.Cos(angleDeg * Mathf.Deg2Rad));
     }
     
+    //SetOrigin
+    public void SetOrigin(Vector3 origin)
+    {
+        transform.position = origin;
+    }
 
     // Update is called once per frame
     void LateUpdate()
     {
      DrawFieldOfView();   
+     
+     //Draw a line from left and corner to right hand corner
+     Vector2 start = new Vector2(200,-70);
+     Vector2 end = new Vector2(100,-50);
+     //DrawLine(start,end, Color.yellow);
     }
     
     public struct ViewCastInfo
