@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour
     private int DetectionRadius;
 
     //Speed and Patrol state
-    private float Speed = 0.03f; //ADJUST BASED ON SIZE OF GAME
+    private float Speed = 0.1f; //ADJUST BASED ON SIZE OF GAME
     private bool isPatrolling;
     public int PatrolRadius;
     private bool isLeftFacing;

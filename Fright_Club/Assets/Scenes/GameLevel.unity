@@ -235,6 +235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 3716512314864279718, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
 --- !u!1 &467274308
@@ -487,6 +491,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &882416075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3716512314864279718, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
+  m_PrefabInstance: {fileID: 6547370130504907588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &882416081
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882416075}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1350452185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,6 +1314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3716512314864279718, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
 --- !u!1001 &6967208458206983634
@@ -1293,6 +1327,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2095743833, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
+      propertyPath: m_Size.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095743833, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
+      propertyPath: m_Size.y
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6967208457869768345, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1341,5 +1383,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6967208457869768322, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}

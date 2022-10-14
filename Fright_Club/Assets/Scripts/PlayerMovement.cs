@@ -27,26 +27,32 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //user input
-        _movement.x = Input.GetAxisRaw("Horizontal");
-        _movement.y = Input.GetAxisRaw("Vertical");
+        if (PlayerHealth > 0)
+        {
+            //user input
+            _movement.x = Input.GetAxisRaw("Horizontal");
+            _movement.y = Input.GetAxisRaw("Vertical");
+        }
     }
 
    
     private void FixedUpdate()
     {
-        // Movement
-        rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
+        if (PlayerHealth > 0)
+        {
+            // Movement
+            rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
+        }
         
       //  _fieldOfView.SetOrigin(transform.position);
     }
 
-    private void OnCollision2D ( Collision2D objectColliding )
+    private void OnCollisionEnter2D ( Collision2D objectColliding )
     {
         if (objectColliding.gameObject.CompareTag("Enemy"))
         {
             this.transform.position = StartingPosition;
-            PlayerHealth--;
+            PlayerHealth = PlayerHealth - 1;
         }
     }
 }

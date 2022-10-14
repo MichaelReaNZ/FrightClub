@@ -28,9 +28,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
+        if( CollectableCount == null )
+        {
+            CollectableCount = 0;
+        }
+
         PlayerHealth = GameObject.Find("Player").GetComponent<PlayerMovement>().PlayerHealth; //Will need to be changed if we add another script for player
 
-        if (CollectableCount == 0) // Victory Condition
+        if (CollectableCount <= 0) // Victory Condition
         {
             GameIsActive = false;
             VictoryText.gameObject.SetActive(true);
@@ -41,7 +46,7 @@ public class GameManager : MonoBehaviour
             
         }
 
-        if (PlayerHealth == 0) // Defeat Condition
+        if (PlayerHealth <= 0) // Defeat Condition
         {
             GameIsActive = false;
             GameOverText.gameObject.SetActive(true);
