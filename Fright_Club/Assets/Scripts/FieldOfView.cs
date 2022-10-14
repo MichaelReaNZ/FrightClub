@@ -95,26 +95,67 @@ public class FieldOfView : MonoBehaviour
     //     lr.SetPosition(1, end);
     //     GameObject.Destroy(myLine, duration);
     // }
+    
+    float AddAngles(float a, float b)
+    {
+        float result = a + b;
+        if (result > 360)
+        {
+            result -= 360;
+        }
+        else if (result < 0)
+        {
+            result += 360;
+        }
+        return result;
+    }
 
     void DrawFieldOfView()
     {
         int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float stepAngleSize = viewAngle / stepCount;
         List<Vector3> viewPoints = new List<Vector3>();
+        
+        //start with mouse position
+        //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
 
         for (int i = 0; i <= stepCount; i++)
         {
-            float angle = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
+            
+            float angleOfLightSegment = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
             //rotate angle by 180
             // angle = angle + 180;
             // if (angle < 0) angle += 360;
             //
-            //draw a red line in game to visualize the angle
-           // DrawLine(transform.position, transform.position + DirectionFromAngle(angle, true) * viewRadius, Color.red);
+            
+            //mouse position relative to a point
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
            
-           Debug.DrawLine(transform.position,transform.position + DirectionFromAngle(angle, true) * viewRadius,Color.yellow);
+            //get the vector representing the mouse's position relative to the point...
+            Vector2 relativeMousePos = mousePos - transform.position;
+            //use atan2 to get the angle; Atan2 returns radians
+            var charToMouseAngleRadians=Mathf.Atan2(relativeMousePos.y, relativeMousePos.x);
+            //convert to degrees
+            var charToMouseDegrees = charToMouseAngleRadians * Mathf.Rad2Deg;
+
+            //It's offset by 90 degrees, so subtract 90
+            charToMouseDegrees -= 90;
+            if (charToMouseDegrees<0) 
+                charToMouseDegrees+=360;
+
+            //change from clockwise to counter clockwise
+            charToMouseDegrees = -charToMouseDegrees;
+
+            angleOfLightSegment = charToMouseDegrees;
+            
+            Debug.Log("Angle of mouse to player: " + charToMouseDegrees);
+            Debug.Log("Angle of light segment: " + angleOfLightSegment);
+            
+
+            Debug.DrawLine(transform.position,transform.position + DirectionFromAngle(charToMouseDegrees, true) * viewRadius,Color.yellow);
            
-            ViewCastInfo newViewCast = ViewCast(angle);
+            ViewCastInfo newViewCast = ViewCast(angleOfLightSegment);
             viewPoints.Add(newViewCast.point);
         }
 
@@ -162,8 +203,7 @@ public class FieldOfView : MonoBehaviour
             angleDeg += transform.eulerAngles.y;
         }
 
-        return new Vector3(Mathf.Sin(angleDeg * Mathf.Deg2Rad),
-            Mathf.Cos(angleDeg * Mathf.Deg2Rad)); //, Mathf.Cos(angleDeg * Mathf.Deg2Rad));
+        return new Vector3(Mathf.Sin(angleDeg * Mathf.Deg2Rad), Mathf.Cos(angleDeg * Mathf.Deg2Rad)); //, Mathf.Cos(angleDeg * Mathf.Deg2Rad));
     }
     
     //SetOrigin
