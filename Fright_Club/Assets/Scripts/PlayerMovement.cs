@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movement;
     private Vector2 StartingPosition;
     public int PlayerHealth;
+    public bool VictoryLocation;
     
     [SerializeField] private FieldOfView _fieldOfView;
     // Start is called before the first frame update
@@ -21,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerHealth = 3;
         rigidbody = GetComponent<Rigidbody2D>();
         StartingPosition = this.transform.position;
-    }
+        VictoryLocation = false;
+}
 
 
     // Update is called once per frame
@@ -38,11 +40,8 @@ public class PlayerMovement : MonoBehaviour
    
     private void FixedUpdate()
     {
-        if (PlayerHealth > 0)
-        {
-            // Movement
-            rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
-        }
+        // Movement
+        rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
         
         _fieldOfView.SetOrigin(rigidbody.position);
     }
@@ -54,5 +53,21 @@ public class PlayerMovement : MonoBehaviour
             this.transform.position = StartingPosition;
             PlayerHealth = PlayerHealth - 1;
         }
+        else
+        {
+            if(objectColliding.gameObject.CompareTag("Finish")  )
+            {
+                VictoryLocation = true;
+            }
+        }
     }
+
+    private void onCollisionExit2D ( Collision2D objectColliding )
+    {
+        if (objectColliding.gameObject.CompareTag("Finish"))
+        {
+            VictoryLocation = false;
+        }
+    }
+
 }

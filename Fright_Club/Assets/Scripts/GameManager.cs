@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public int CollectableCount;
     public int PlayerHealth;
-    private bool GameIsActive;
+    public bool GameIsActive;
     public TextMeshProUGUI GameOverText;
     public TextMeshProUGUI VictoryText;
     public Button RestartBtn;
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         GameOverText.gameObject.SetActive(false);
         RestartBtn.gameObject.SetActive(false);
         GameIsActive = true;
-        Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen, 60);
+        //Screen.SetResolution(1820, 1080, FullScreenMode.ExclusiveFullScreen, 60);
     }
 
     // Update is called once per frame
@@ -35,11 +35,14 @@ public class GameManager : MonoBehaviour
 
         PlayerHealth = GameObject.Find("Player").GetComponent<PlayerMovement>().PlayerHealth; //Will need to be changed if we add another script for player
 
-        if (CollectableCount <= 0) // Victory Condition
+        if (  CollectableCount <= 0 && GameObject.Find("Player").GetComponent<PlayerMovement>().VictoryLocation ) // Victory Condition
         {
+            SceneManager.LoadScene("GameComplete");
+            /*
             GameIsActive = false;
             VictoryText.gameObject.SetActive(true);
             RestartBtn.gameObject.SetActive(true);
+            */
         }
         else 
         {
@@ -48,9 +51,12 @@ public class GameManager : MonoBehaviour
 
         if (PlayerHealth <= 0) // Defeat Condition
         {
+            SceneManager.LoadScene("GameOver");
+            /*
             GameIsActive = false;
             GameOverText.gameObject.SetActive(true);
             RestartBtn.gameObject.SetActive(true);
+            */
         }
         else
         {
