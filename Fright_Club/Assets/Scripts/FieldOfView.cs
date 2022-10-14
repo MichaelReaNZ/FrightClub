@@ -113,21 +113,12 @@ public class FieldOfView : MonoBehaviour
     void DrawFieldOfView()
     {
         int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
-        float stepAngleSize = viewAngle / stepCount;
+        float angleSegmentSize = viewAngle / stepCount;
         List<Vector3> viewPoints = new List<Vector3>();
         
-        //start with mouse position
-        //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
-
         for (int i = 0; i <= stepCount; i++)
         {
-            
-            float angleOfLightSegment = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
-            //rotate angle by 180
-            // angle = angle + 180;
-            // if (angle < 0) angle += 360;
-            //
+            float angleOfLightSegment = transform.eulerAngles.y - viewAngle / 2 + angleSegmentSize * i;
             
             //mouse position relative to a point
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -141,20 +132,24 @@ public class FieldOfView : MonoBehaviour
 
             //It's offset by 90 degrees, so subtract 90
             charToMouseDegrees -= 90;
+            //keep angles within the 0 to 360 range
             if (charToMouseDegrees<0) 
                 charToMouseDegrees+=360;
 
             //change from clockwise to counter clockwise
             charToMouseDegrees = -charToMouseDegrees;
 
-            angleOfLightSegment = charToMouseDegrees;
+            // angleOfLightSegment = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;;
+            
+            //make sure the mouse is in the middle of the beam of light
+            angleOfLightSegment = charToMouseDegrees - (viewAngle / 2) + (angleSegmentSize * i);;
             
             Debug.Log("Angle of mouse to player: " + charToMouseDegrees);
-            Debug.Log("Angle of light segment: " + angleOfLightSegment);
-            
-
             Debug.DrawLine(transform.position,transform.position + DirectionFromAngle(charToMouseDegrees, true) * viewRadius,Color.yellow);
-           
+
+            Debug.Log("Angle of light segment: " + angleOfLightSegment);
+            Debug.DrawLine(transform.position,transform.position + DirectionFromAngle(angleOfLightSegment, true) * viewRadius,Color.magenta);
+            
             ViewCastInfo newViewCast = ViewCast(angleOfLightSegment);
             viewPoints.Add(newViewCast.point);
         }
