@@ -236,6 +236,10 @@ PrefabInstance:
       value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 3716512314864279718, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716512314864279718, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -617,7 +621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 619390062}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObjectsThatLightCanNotPass
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -650,7 +654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 698351837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Monsters
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -686,7 +690,7 @@ GameObject:
   - component: {fileID: 709605138}
   - component: {fileID: 709605137}
   - component: {fileID: 709605136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObjectWithShadow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,7 +797,7 @@ GameObject:
   - component: {fileID: 900490160}
   - component: {fileID: 900490159}
   - component: {fileID: 900490158}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObjectWithShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,6 +1721,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3716512314864279718, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
 --- !u!1001 &6967208458206983634
@@ -1726,17 +1734,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1531191168, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
     - target: {fileID: 6967208457869768345, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6967208457869768348, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
-      propertyPath: meshResolution
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6967208457869768351, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: m_RootOrder

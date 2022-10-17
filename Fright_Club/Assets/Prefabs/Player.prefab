@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dec8023a9c6722a45b7985f1453e00a6, type: 2}
+  - {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   PlayerHealth: 0
   VictoryLocation: 0
-  _fieldOfView: {fileID: 0}
+  _fieldOfView: {fileID: 6967208457869768348}
 --- !u!114 &6967208457869768348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,16 +201,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d84fbaa49103834e8957b76704325f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 120
+  viewRadius: 240
   viewAngle: 51
   targetMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 128
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 64
   visibleTargets: []
-  meshResolution: 0.1
+  meshResolution: 0.2
   viewMeshFilter: {fileID: 1531191169}
 --- !u!50 &2095743834
 Rigidbody2D:

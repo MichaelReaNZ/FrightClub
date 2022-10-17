@@ -40,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
    
     private void FixedUpdate()
     {
+        if(_fieldOfView == null) return;
         // Movement
         rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
-        
         _fieldOfView.SetOrigin(rigidbody.position);
     }
 
