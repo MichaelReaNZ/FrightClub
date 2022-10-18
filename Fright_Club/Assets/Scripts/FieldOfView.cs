@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -12,13 +13,16 @@ public class FieldOfView : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     
-    [HideInInspector]
-    public List<Transform> visibleTargets = new List<Transform>();
+    [FormerlySerializedAs("visibleTargets")] [HideInInspector]
+    public List<Transform> visibleMonsters = new List<Transform>();
     
     public float meshResolution;
     Mesh _viewMesh;
+    List<Vector3> viewPoints = new List<Vector3>();
     
     public MeshFilter viewMeshFilter;
+    
+    //public Monster monsterScript;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +47,7 @@ public class FieldOfView : MonoBehaviour
         
        Debug.DrawLine(fromPoint,toPoint,Color.green);
        var angleOfMouseToPlayer = AngleBetweenTwoPoints(fromPoint,toPoint);
-       Debug.Log("Angle of mouse to player: " + angleOfMouseToPlayer);
+       //Debug.Log("Angle of mouse to player: " + angleOfMouseToPlayer);
         
        
        StartCoroutine(nameof(FindTargetsWithDelay), .2f);
@@ -79,58 +83,69 @@ public class FieldOfView : MonoBehaviour
     
     void FindVisibleTargets()
     {
-        visibleTargets.Clear();
+        visibleMonsters.Clear();
         //Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
         
         //get all objects from the targetMask layer
-        GameObject[] monsters = FindGameObjectsInLayer(7);
-      //  Debug.DrawLine(transform.position, monsters[0].transform.position,Color.magenta);
+        //TODO: FIX This. This gets the parent monster too which we don't want
+        GameObject[] monsterObjects = FindGameObjectsInLayer(7);
+
         //for each monster check in the beam of light is colliding
         
         //TODO: Test this more
-        foreach (GameObject monster in monsters)
+        foreach (GameObject monsterObject in monsterObjects)
         {
-            Debug.DrawLine(transform.position, monster.transform.position,Color.magenta);
-            
-            
-            Vector3 dirToTarget = (monster.transform.position - transform.position).normalized;
-            
+            Vector3 dirToTarget = (monsterObject.transform.position - transform.position).normalized;
+
             var lightAngleStart = AngleBetweenPlayerToMouse() - (viewAngle / 2);
             var lightAngleEnd = AngleBetweenPlayerToMouse() + (viewAngle / 2);
-            
-            Vector3 lightAngleStartVector =  DirectionFromAngle(lightAngleStart, false);
-            Vector3 lightAngleEndVector =  DirectionFromAngle(lightAngleEnd, false);
-            
-            Debug.DrawLine(transform.position, transform.position + lightAngleStartVector * viewRadius,Color.red);
-            Debug.DrawLine(transform.position, transform.position + lightAngleEndVector * viewRadius,Color.red);
-            
+
+            Vector3 lightAngleStartVector = DirectionFromAngle(lightAngleStart, false);
+            Vector3 lightAngleEndVector = DirectionFromAngle(lightAngleEnd, false);
+
+            Debug.DrawLine(transform.position, transform.position + lightAngleStartVector * viewRadius, Color.red);
+            Debug.DrawLine(transform.position, transform.position + lightAngleEndVector * viewRadius, Color.red);
+
             // Vector3 viewAngleA = DirectionFromAngle(-viewAngle / 2, false);
             // Vector3 viewAngleB = DirectionFromAngle(viewAngle / 2, false);
             //
             // Debug.DrawLine(transform.position, transform.position + viewAngleA * viewRadius,Color.red);
             // Debug.DrawLine(transform.position, transform.position + viewAngleB * viewRadius,Color.red);
-            
-           
-            
-            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle)
+            Debug.DrawLine(transform.position, monsterObject.transform.position, Color.magenta);
+
+
+            //monster Is Within Range Of FlashLight Radius
+            if (Vector3.Distance(transform.position, monsterObject.transform.position) < viewRadius)
             {
-                
-                bool MonsterIsWithinRangeOfFlashLightRadius = Vector3.Distance(transform.position, monster.transform.position) < viewRadius;
-                
-                bool MonsterIsWithinAngleOfFlashLight = Vector3.Angle(transform.forward, dirToTarget) < viewAngle;
-                
-                //not hitting a wall first
-               bool RaycastIsCollidingWithMonster = Physics.Raycast(transform.position, dirToTarget, viewRadius, obstacleMask);
-                
-                if (MonsterIsWithinRangeOfFlashLightRadius && MonsterIsWithinAngleOfFlashLight && !RaycastIsCollidingWithMonster)
+                Monster monsterScript = monsterObject.GetComponent<Monster>();
+                if (monsterScript == null) continue;
+                // monster.GetComponentsInChildren<SpriteRenderer>()[0].material.color = Color.white;
+                // Debug.Log("Monster is within radius of flashlight");
+                //TODO: For performance also check if the monster is within the angle of the flashlight?
+
+                //TODO: This should be a raycast check not a in mask check (Walls)
+                if (ContainsPoint(viewPoints, monsterObject.transform.position))
                 {
-                    visibleTargets.Add(monster.transform);
+                    Debug.Log("Monster is within the flashlight.");
+                    //change color of the monster
+                    // monsterObject.GetComponentsInChildren<SpriteRenderer>()[0].material.color = Color.red;
+                    monsterObject.GetComponent<Monster>().isIlluminated = true;
+                    visibleMonsters.Add(monsterObject.transform);
                 }
-                
-               
+                else
+                {
+                    // monsterObject.GetComponentsInChildren<SpriteRenderer>()[0].material.color = Color.white;
+                    monsterObject.GetComponent<Monster>().isIlluminated = false;
+                }
+            }
+            //monster Is outside of range Of FlashLight Radius
+            else
+            {
+                monsterObject.GetComponent<Monster>().isIlluminated = false;
+                //monsterObject.GetComponentsInChildren<SpriteRenderer>()[0].material.color = Color.white;
             }
         }
-        
+
 
 
         // for (int i = 0; i < targetsInViewRadius.Length; i++)
@@ -159,7 +174,8 @@ public class FieldOfView : MonoBehaviour
     {
         int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float angleSegmentSize = viewAngle / stepCount;
-        List<Vector3> viewPoints = new List<Vector3>();
+       // List<Vector3> viewPoints = new List<Vector3>();
+       viewPoints.Clear();
         
         for (int i = 0; i <= stepCount; i++)
         {
@@ -320,5 +336,22 @@ public class FieldOfView : MonoBehaviour
         }
         return result;
     }
-
+    
+    
+    private static bool ContainsPoint(List<Vector3> polyPoints, Vector2 p)
+    {
+        // var j = polyPoints.Length - 1;
+        var j = polyPoints.Count - 1;
+        var inside = false;
+        for (int i = 0; i < polyPoints.Count; j = i++)
+        // for (int i = 0; i < polyPoints.Length; j = i++)
+        {
+            var pi = polyPoints[i];
+            var pj = polyPoints[j];
+            if (((pi.y <= p.y && p.y < pj.y) || (pj.y <= p.y && p.y < pi.y)) &&
+                (p.x < (pj.x - pi.x) * (p.y - pi.y) / (pj.y - pi.y) + pi.x))
+                inside = !inside;
+        }
+        return inside;
+    }
 }

@@ -20,7 +20,7 @@ public class Monster : MonoBehaviour
     private bool isPatrolling;
     public int PatrolRadius;
     private bool isLeftFacing;
-    private bool isIlluminated;
+    public bool isIlluminated;
 
     // Start is called before the first frame update
     void Start()
