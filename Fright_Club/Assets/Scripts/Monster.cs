@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    //Textures to be rendered
-    private Sprite darkSprite;
-    private Sprite lightSprite;
+    //Textures, Animations and Illumination status
+    public Sprite darkSprite;
+    public Animator darkAnimation;
+    public Sprite lightSprite;
+    public bool isIlluminated;
 
     //Positions of player and monster
     private Vector2 PlayerPosition;
     private Vector2 StartingPosition;
 
-    //Detection Radius
-    private int DetectionRadius;
+    //Patrol Values
+    public Vector2 firstMark;
+    public Vector2 secondMark;
+    public Vector2 thirdMark;
+    public Vector2 fourthMark;
+    private Vector2[] patrolMarks;
+    private int currentMark;
 
     //Speed and Patrol state
-    private float Speed = 0.3f; //ADJUST BASED ON SIZE OF GAME
+    public float Speed = 0.15f; //ADJUST BASED ON SIZE OF GAME
     private bool isPatrolling;
-    public int PatrolRadius;
-    private bool isLeftFacing;
-    public bool isIlluminated;
+
+    //Detection Radius
+    public int PlayerDetectionRadius;
+    public int PlayerTrackingRadius;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +38,20 @@ public class Monster : MonoBehaviour
         StartingPosition = this.transform.position;
         isPatrolling = true;
         isIlluminated = false;
-        isLeftFacing = true;
-        DetectionRadius = 100;
-        PatrolRadius = 50;
+
+        //Radiuses for Player detection and tracking
+        PlayerDetectionRadius = 100;
+        PlayerTrackingRadius = 75;
+
+        //Patrol Values setup
+        patrolMarks = new Vector2[4]
+        {
+            firstMark,
+            secondMark,
+            thirdMark,
+            fourthMark
+        };
+        currentMark = 0;
     }
 
     // Update is called once per frame
@@ -44,10 +64,13 @@ public class Monster : MonoBehaviour
         //If illuminated, allows movement
         if (!isIlluminated)
         {
-            if ((this.transform.position.x <= PlayerPosition.x + DetectionRadius && this.transform.position.y <= PlayerPosition.y + DetectionRadius) &&
-                (this.transform.position.x >= PlayerPosition.x - DetectionRadius && this.transform.position.y >= PlayerPosition.y - DetectionRadius))
+            if ((this.transform.position.x <= PlayerPosition.x + PlayerDetectionRadius && this.transform.position.y <= PlayerPosition.y + PlayerDetectionRadius) &&
+                (this.transform.position.x >= PlayerPosition.x - PlayerDetectionRadius && this.transform.position.y >= PlayerPosition.y - PlayerDetectionRadius) &&
+                (this.transform.position.x <= StartingPosition.x + PlayerTrackingRadius && this.transform.position.y <= StartingPosition.y + PlayerTrackingRadius) &&
+                (this.transform.position.x >= StartingPosition.x - PlayerTrackingRadius && this.transform.position.y >= StartingPosition.y - PlayerTrackingRadius))
             {
                 isPatrolling = false;
+                currentMark = 0;
                 Attack();
             }
             else
@@ -55,7 +78,7 @@ public class Monster : MonoBehaviour
                 //Patrol if at starting position
                 if (isPatrolling)
                 {
-                    Patrol();
+                    currentMark = Patrol(currentMark);
                 }
                 //Return to starting position
                 else
@@ -76,34 +99,19 @@ public class Monster : MonoBehaviour
         this.transform.position = Vector2.MoveTowards(transform.position, PlayerPosition, Speed);
     }
 
-    // Move along set routes : TO BE IMPLEMENTED AT A LATER PROTOTYPE
-    void Patrol()
+    // Move along set routes, points must be implemented into the editor on creation
+    int Patrol( int pointToMove )
     {
-        Vector2 NewLocation = StartingPosition;
-        if( isLeftFacing )
+        this.transform.position = Vector2.MoveTowards(transform.position, patrolMarks[pointToMove], Speed);
+        if( this.transform.position.x == patrolMarks[pointToMove].x && this.transform.position.y == patrolMarks[pointToMove].y )
         {
-            if (this.transform.position.x < StartingPosition.x + PatrolRadius)
+            pointToMove++;
+            if( pointToMove == patrolMarks.Length )
             {
-                NewLocation.x = StartingPosition.x + 50;
-                this.transform.position = Vector2.MoveTowards(transform.position, NewLocation, Speed);
-            }
-            else
-            {
-                isLeftFacing = false;
+                pointToMove = 0;
             }
         }
-        else
-        {
-            if (this.transform.position.x > StartingPosition.x - PatrolRadius)
-            {
-                NewLocation.x = StartingPosition.x - 50;
-                this.transform.position = Vector2.MoveTowards(transform.position, NewLocation, Speed);
-            }
-            else
-            {
-                isLeftFacing = true;
-            }
-        }
+        return pointToMove;
     }
 
     //Changes sprites based on light level
@@ -115,7 +123,13 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            //this.GetComponent<SpriteRenderer>().sprite = darkSprite;
+            /*
+                this.GetComponent<SpriteRenderer>().sprite = darkSprite;
+                if(!darkAnimation.Play)
+                {
+                    darkAnimation.Play("Monster_Move");
+                }
+            */
         }
     }
 }
