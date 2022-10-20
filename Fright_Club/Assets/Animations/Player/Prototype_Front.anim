@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Monster_Goo_Movement
+  m_Name: Prototype_Front
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 910657a918f5028459da474a53257c05, type: 3}
+      value: {fileID: 273044190, guid: 29f935dce50f142468ed8d251c749b2a, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 9a5b31d7356e9ce46ab5a731478d92bc, type: 3}
+      value: {fileID: 57483734, guid: d69bbbd1ec49b0e4487c0bb97a869fb4, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: eb34bdd8cab55944d8421da26df13cec, type: 3}
+      value: {fileID: 1808456681, guid: b372c37e5e5cc164cb0881c0a2b5f50e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +44,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 910657a918f5028459da474a53257c05, type: 3}
-    - {fileID: 21300000, guid: 9a5b31d7356e9ce46ab5a731478d92bc, type: 3}
-    - {fileID: 21300000, guid: eb34bdd8cab55944d8421da26df13cec, type: 3}
+    - {fileID: 273044190, guid: 29f935dce50f142468ed8d251c749b2a, type: 3}
+    - {fileID: 57483734, guid: d69bbbd1ec49b0e4487c0bb97a869fb4, type: 3}
+    - {fileID: 1808456681, guid: b372c37e5e5cc164cb0881c0a2b5f50e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

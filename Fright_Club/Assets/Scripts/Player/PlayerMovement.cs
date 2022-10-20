@@ -9,11 +9,14 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     
     public Rigidbody2D rigidbody;
+    private Animator playerAnimation;
 
     private Vector2 _movement;
     private Vector2 StartingPosition;
     public int PlayerHealth;
     public bool VictoryLocation;
+
+    private AudioSource playerMovementSound;
     
     [SerializeField] private FieldOfView _fieldOfView;
     // Start is called before the first frame update
@@ -23,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         StartingPosition = this.transform.position;
         VictoryLocation = false;
+
+        playerAnimation = GetComponent<Animator>();
+        playerMovementSound = GetComponent<AudioSource>();
 }
 
 
@@ -34,6 +40,18 @@ public class PlayerMovement : MonoBehaviour
             //user input
             _movement.x = Input.GetAxisRaw("Horizontal");
             _movement.y = Input.GetAxisRaw("Vertical");
+
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            {
+                if (!playerMovementSound.isPlaying)
+                {
+                    playerMovementSound.Play();
+                }
+            } 
+            else
+            {
+                playerMovementSound.Stop();
+            }
         }
     }
 
@@ -44,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
         // Movement
         rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
         _fieldOfView.SetOrigin(rigidbody.position);
+        playerAnimation.SetFloat("PlayerMoveX", _movement.x);
+        playerAnimation.SetFloat("PlayerMoveY", _movement.y);
     }
 
     private void OnCollisionEnter2D ( Collision2D objectColliding )

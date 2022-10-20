@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI VictoryText;
     public Button RestartBtn;
 
+    private AudioSource backgroundMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +23,18 @@ public class GameManager : MonoBehaviour
         GameOverText.gameObject.SetActive(false);
         RestartBtn.gameObject.SetActive(false);
         GameIsActive = true;
+        backgroundMusic = GetComponent<AudioSource>();
         //Screen.SetResolution(1820, 1080, FullScreenMode.ExclusiveFullScreen, 60);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!backgroundMusic.isPlaying)
+        {
+            backgroundMusic.Play();
+        }
+
         CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
         if( CollectableCount == null )
         {
