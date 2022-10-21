@@ -202,9 +202,10 @@ public class FieldOfView : MonoBehaviour
     {
         Vector3 direction = DirectionFromAngle(globalAngle, true);
 
-        if (Physics.Raycast(transform.position, direction, out var hit, viewRadius, obstacleMask))
+        var rayCastResult = Physics2D.Raycast(transform.position, direction, viewRadius, obstacleMask);
+        if (rayCastResult.distance > 0)
         {
-            return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+            return new ViewCastInfo(true, rayCastResult.point, rayCastResult.distance, globalAngle);
         }
         else
         {

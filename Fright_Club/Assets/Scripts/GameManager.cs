@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!backgroundMusic.isPlaying)
+        if(backgroundMusic != null && !backgroundMusic.isPlaying)
         {
             backgroundMusic.Play();
         }
