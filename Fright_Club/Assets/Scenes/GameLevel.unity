@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3716512314864279719, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
       propertyPath: Speed
-      value: 0.08
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3716512314864279719, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
       propertyPath: firstMark.x
@@ -1127,7 +1127,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 572dc586873efd543b8a4978c94d3949, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.03
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1471,7 +1471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3716512314864279719, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
       propertyPath: Speed
-      value: 0.08
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3716512314864279719, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
       propertyPath: firstMark.x
@@ -3008,7 +3008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3716512314864279719, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
       propertyPath: Speed
-      value: 0.08
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3716512314864279719, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
       propertyPath: firstMark.x
