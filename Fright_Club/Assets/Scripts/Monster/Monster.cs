@@ -55,7 +55,7 @@ public class Monster : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Search for the player
         PlayerPosition = GameObject.Find("Player").transform.position;
