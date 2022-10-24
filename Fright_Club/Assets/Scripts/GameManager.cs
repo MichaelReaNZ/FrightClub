@@ -36,10 +36,6 @@ public class GameManager : MonoBehaviour
         }
 
         CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
-        if( CollectableCount == null )
-        {
-            CollectableCount = 0;
-        }
 
         PlayerHealth = GameObject.Find("Player").GetComponent<PlayerMovement>().PlayerHealth; //Will need to be changed if we add another script for player
 
