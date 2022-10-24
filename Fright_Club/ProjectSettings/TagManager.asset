@@ -40,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 4111811921
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Darkness_WallBtom
+    uniqueID: 2011078881
     locked: 0
