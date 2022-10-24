@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int CollectableCount;
+    public int LightFuel;
     public int PlayerHealth;
     public bool GameIsActive;
     public TextMeshProUGUI GameOverText;

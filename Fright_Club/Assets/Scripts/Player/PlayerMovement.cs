@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             this.transform.position = StartingPosition;
             PlayerHealth = PlayerHealth - 1;
+            _fieldOfView.ResetLightAngleAndLength();
         }
         else
         {

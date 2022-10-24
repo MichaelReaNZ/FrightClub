@@ -8,8 +8,10 @@ public class FieldOfView : MonoBehaviour
 {
     public float viewRadius;
     [Range(0, 360)] public float viewAngle;
+    private float originalViewAngle;
+    private float originalViewRadius;
 
-    public LayerMask targetMask;
+   // public LayerMask targetMask;
     public LayerMask obstacleMask;
 
     [FormerlySerializedAs("visibleTargets")] [HideInInspector]
@@ -18,8 +20,11 @@ public class FieldOfView : MonoBehaviour
     public float meshResolution;
     Mesh _viewMesh;
     private List<Vector3> _viewPoints = new List<Vector3>();
-
     public MeshFilter viewMeshFilter;
+    
+    public bool dimViewAngle = false;
+    public bool dimViewRadius = false;
+    public int dimmingSpeed = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +32,15 @@ public class FieldOfView : MonoBehaviour
         _viewMesh = new Mesh();
         _viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = _viewMesh;
+        
+        originalViewAngle = viewAngle;
+        originalViewRadius = viewRadius;
 
         StartCoroutine(nameof(FindTargetsWithDelay), .2f);
+        StartCoroutine(nameof(ReduceLightAngleAndLength));
     }
+
+    
 
     IEnumerator FindTargetsWithDelay(float delay)
     {
@@ -249,5 +260,32 @@ public class FieldOfView : MonoBehaviour
             dst = _dst;
             angle = _angle;
         }
+    }
+    
+    IEnumerator ReduceLightAngleAndLength()
+    {
+        while (dimmingSpeed > 0)
+        {
+            yield return new WaitForSeconds(0.05f);
+            if (dimViewAngle && viewAngle > 0)
+            {
+                //reduce by 1%
+                viewAngle -= viewAngle * (dimmingSpeed * 0.0001f);
+                viewAngle -= 0.01f;
+            }
+                
+            if (dimViewRadius && viewRadius > 0)
+            {
+                //reduce by 1%
+                viewRadius -= viewRadius * (dimmingSpeed * 0.0001f);
+                viewRadius -= 0.01f;
+            }
+        }
+    }
+    
+    public void ResetLightAngleAndLength()
+    {
+        viewAngle = originalViewAngle;
+        viewRadius = originalViewRadius;
     }
 }
