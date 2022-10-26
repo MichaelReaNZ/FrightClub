@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5981609770804576264}
   - component: {fileID: 5981609770804576265}
   m_Layer: 0
-  m_Name: Collectable (1)
+  m_Name: Collectable_ Endgame_Bear
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
