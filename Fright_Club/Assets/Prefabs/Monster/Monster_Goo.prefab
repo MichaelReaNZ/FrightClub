@@ -101,17 +101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9037f3b1eb46884dbff1c3dfeca812c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  darkSprite: {fileID: 0}
-  darkAnimation: {fileID: 0}
-  lightSprite: {fileID: 0}
   isIlluminated: 0
-  firstMark: {x: 0, y: -5}
-  secondMark: {x: 46, y: -5}
-  thirdMark: {x: 46, y: 55}
-  fourthMark: {x: 0, y: 55}
-  Speed: 0.7
-  PlayerDetectionRadius: 0
-  PlayerTrackingRadius: 0
+  secondMark: {x: 0, y: 0}
+  thirdMark: {x: 0, y: 0}
+  fourthMark: {x: 0, y: 0}
+  HiddenSpeed: 0.5
+  VisibleSpeed: 0
+  PlayerDetectionRadius: 75
+  PlayerTrackingRadius: 80
 --- !u!50 &882416081
 Rigidbody2D:
   serializedVersion: 4
