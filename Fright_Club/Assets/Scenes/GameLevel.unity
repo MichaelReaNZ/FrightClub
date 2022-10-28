@@ -2967,6 +2967,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1531191168, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531191168, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0851bef2d1dba9f4aa91b75fc252fd74, type: 2}
     - target: {fileID: 6967208457869768345, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2985,7 +2993,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6967208457869768348, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: dimmingSpeed
-      value: 8
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6967208457869768348, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
+      propertyPath: dimBrightness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6967208457869768348, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: dimViewRadius

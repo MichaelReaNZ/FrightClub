@@ -24,6 +24,8 @@ public class FieldOfView : MonoBehaviour
     
     public bool dimViewAngle = false;
     public bool dimViewRadius = false;
+    public bool dimBrightness = false;
+    private float _brightness = 0f;
     public int dimmingSpeed = 10;
 
     // Start is called before the first frame update
@@ -279,6 +281,15 @@ public class FieldOfView : MonoBehaviour
                 viewRadius -= viewRadius * (dimmingSpeed * 0.0001f);
                 viewRadius -= 0.01f;
             }
+
+            if (dimBrightness)
+            {
+                _brightness += dimmingSpeed * 0.00005f;
+                var materials = viewMeshFilter.GetComponent<MeshRenderer>().materials;
+                var material = materials[1];
+                Color currentColor = material.color;
+                material.color = new Color(currentColor.r, currentColor.g, currentColor.b, _brightness);
+            }
         }
     }
     
@@ -286,5 +297,6 @@ public class FieldOfView : MonoBehaviour
     {
         viewAngle = originalViewAngle;
         viewRadius = originalViewRadius;
+        _brightness = 0;
     }
 }
