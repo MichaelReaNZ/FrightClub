@@ -26,6 +26,7 @@ public class Spider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if ( DetectPlayer && !Frienzied )
         {
             Frienzied = true;
@@ -38,8 +39,10 @@ public class Spider : MonoBehaviour
         {
 
         }
+        */
     }
 
+    /*
     //Checks if the player is close to the animal
     bool DetectPlayer()
     {
@@ -49,7 +52,9 @@ public class Spider : MonoBehaviour
         else
             return false;
     }
+    */
 
+    /*
     //Makes the animal run away from the player
     void FleePlayer()
     {
@@ -57,7 +62,7 @@ public class Spider : MonoBehaviour
         this.transform.Rotate(0, 180, 0);
         this.transform.Translate(Vector2.forward);
     }
-
+    */
     //Has the animal move in a random direction
     void ChooseMovement()
     {
