@@ -49,3 +49,15 @@ TagManager:
   - name: Darkness_WallBtom
     uniqueID: 2011078881
     locked: 0
+  - name: RoomObjectBehind2
+    uniqueID: 3966086259
+    locked: 0
+  - name: RoomObjectBehind
+    uniqueID: 3142138561
+    locked: 0
+  - name: WallFrontOfObject
+    uniqueID: 4043504337
+    locked: 0
+  - name: RoomObject
+    uniqueID: 2756859575
+    locked: 0
