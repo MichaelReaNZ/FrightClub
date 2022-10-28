@@ -78,8 +78,7 @@ public class FieldOfView : MonoBehaviour
         GameObject[] monsterObjects = FindGameObjectsInLayer(7);
 
         //for each monster check in the beam of light is colliding
-        //Start at 1 to skip the parent monster which we don't want
-        for (var index = 1; index < monsterObjects.Length; index++)
+        for (var index = 0; index < monsterObjects.Length; index++)
         {
             var monsterObject = monsterObjects[index];
             Monster monsterComponent = monsterObject.GetComponent<Monster>();
