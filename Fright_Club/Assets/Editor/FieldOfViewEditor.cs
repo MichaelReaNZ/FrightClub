@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(FieldOfView))]
+[CustomEditor(typeof(LanturnLightFieldOfView))]
 public class FieldOfViewEditor : Editor
 {
     private void OnSceneGUI()
     {
-       FieldOfView fov = (FieldOfView)target;
+       LanturnLightFieldOfView fov = (LanturnLightFieldOfView)target;
          Handles.color = Color.white;
          //Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.up, 360, fov.viewRadius);
             Vector3 viewAngleA = fov.DirectionFromAngle(-fov.viewAngle / 2, false);

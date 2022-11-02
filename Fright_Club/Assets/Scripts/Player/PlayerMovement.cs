@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         Right
     }
     
-    [SerializeField] private FieldOfView _fieldOfView;
+    [FormerlySerializedAs("_fieldOfView")] [SerializeField] private LanturnLightFieldOfView lanturnLightFieldOfView;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,10 +83,10 @@ public class PlayerMovement : MonoBehaviour
    
     private void FixedUpdate()
     {
-        if(_fieldOfView == null) return;
+        if(lanturnLightFieldOfView == null) return;
         // Movement
         rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
-        _fieldOfView.SetOrigin(rigidbody.position);
+        lanturnLightFieldOfView.SetOrigin(rigidbody.position);
         playerAnimation.SetFloat("PlayerMoveX", _movement.x);
         playerAnimation.SetFloat("PlayerMoveY", _movement.y);
     }
@@ -96,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         {
             this.transform.position = StartingPosition;
             PlayerHealth = PlayerHealth - 1;
-            _fieldOfView.ResetLightAngleAndLength();
+            lanturnLightFieldOfView.ResetLightAngleAndLength();
         }
         else
         {

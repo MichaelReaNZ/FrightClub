@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightFuel : MonoBehaviour
 {
-    [SerializeField] private FieldOfView _fieldOfView;
+    [SerializeField] private LanturnLightFieldOfView lanturnLightFieldOfView;
     
     // Start is called before the first frame update
     void Start()
@@ -25,8 +25,8 @@ public class LightFuel : MonoBehaviour
         {
             Destroy(this.gameObject);
             
-            FieldOfView fieldOfViewComponent = objectColliding.gameObject.GetComponent<FieldOfView>();
-            fieldOfViewComponent.ResetLightAngleAndLength();
+            LanturnLightFieldOfView lanturnLightFieldOfViewComponent = objectColliding.gameObject.GetComponent<LanturnLightFieldOfView>();
+            lanturnLightFieldOfViewComponent.ResetLightAngleAndLength();
         }
     }
 }
