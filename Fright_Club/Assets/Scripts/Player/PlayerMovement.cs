@@ -87,8 +87,13 @@ public class PlayerMovement : MonoBehaviour
         // Movement
         rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
         lanturnLightFieldOfView.SetOrigin(rigidbody.position);
-        playerAnimation.SetFloat("PlayerMoveX", _movement.x);
-        playerAnimation.SetFloat("PlayerMoveY", _movement.y);
+        //Animation will go here
+        // playerAnimation.SetFloat("PlayerMoveX", _movement.x);
+        // playerAnimation.SetFloat("PlayerMoveY", _movement.y);
+        
+        //use enum direction to set player direction
+        playerAnimation.SetFloat("PlayerMoveX", currentDirection == PlayerDirection.Right ? 1 : currentDirection == PlayerDirection.Left ? -1 : 0);
+        playerAnimation.SetFloat("PlayerMoveY", currentDirection == PlayerDirection.Up ? 1 : currentDirection == PlayerDirection.Down ? -1 : 0);
     }
 
     private void OnCollisionEnter2D ( Collision2D objectColliding )
