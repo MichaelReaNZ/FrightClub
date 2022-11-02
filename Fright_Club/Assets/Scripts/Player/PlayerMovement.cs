@@ -18,6 +18,17 @@ public class PlayerMovement : MonoBehaviour
 
     private AudioSource playerMovementSound;
     
+    public PlayerDirection currentDirection;
+    
+    //enum for player direction
+    public enum PlayerDirection
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
+    
     [SerializeField] private FieldOfView _fieldOfView;
     // Start is called before the first frame update
     void Start()
@@ -40,6 +51,19 @@ public class PlayerMovement : MonoBehaviour
             //user input
             _movement.x = Input.GetAxisRaw("Horizontal");
             _movement.y = Input.GetAxisRaw("Vertical");
+
+            currentDirection = _movement.x switch
+            {
+                //set current direction enum
+                > 0 => PlayerDirection.Right,
+                < 0 => PlayerDirection.Left,
+                _ => _movement.y switch
+                {
+                    > 0 => PlayerDirection.Up,
+                    < 0 => PlayerDirection.Down,
+                    _ => currentDirection
+                }
+            };
 
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {

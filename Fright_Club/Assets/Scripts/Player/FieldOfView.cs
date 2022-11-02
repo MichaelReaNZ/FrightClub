@@ -27,6 +27,7 @@ public class FieldOfView : MonoBehaviour
     public bool dimBrightness = false;
     private float _brightness = 0f;
     public int dimmingSpeed = 10;
+    public bool limitLightMouseMovementByPlayerDirection = true;
 
     // Start is called before the first frame update
     void Start()
@@ -187,8 +188,56 @@ public class FieldOfView : MonoBehaviour
     private float AngleBetweenPlayerAndMouse()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float angleBetweenPlayerAndMouse = AngleBetweenTwoPoints(transform.position, mousePos);
 
-        return AngleBetweenTwoPoints(transform.position, mousePos);
+        if (limitLightMouseMovementByPlayerDirection)
+        {
+            //get direction of player
+            PlayerMovement.PlayerDirection currentDirection = transform.GetComponent<PlayerMovement>().currentDirection;
+
+            //if facing left
+            if (currentDirection == PlayerMovement.PlayerDirection.Left)
+            {
+                //if mouse is to the right of the player
+                if (mousePos.x > transform.position.x)
+                {
+                    //flip the angle
+                    angleBetweenPlayerAndMouse = 360 - angleBetweenPlayerAndMouse;
+                }
+            }
+            //if facing right
+            else if (currentDirection == PlayerMovement.PlayerDirection.Right)
+            {
+                //if mouse is to the left of the player
+                if (mousePos.x < transform.position.x)
+                {
+                    //flip the angle
+                    angleBetweenPlayerAndMouse = 360 - angleBetweenPlayerAndMouse;
+                }
+            }
+            //if facing up
+            else if (currentDirection == PlayerMovement.PlayerDirection.Up)
+            {
+                //if mouse is below the player
+                if (mousePos.y < transform.position.y)
+                {
+                    //reverse the angle
+                    angleBetweenPlayerAndMouse = 180 - angleBetweenPlayerAndMouse;
+                }
+            }
+            //if facing down
+            else if (currentDirection == PlayerMovement.PlayerDirection.Down)
+            {
+                //if mouse is above the player
+                if (mousePos.y > transform.position.y)
+                {
+                    //reverse the angle
+                    angleBetweenPlayerAndMouse = 180 - angleBetweenPlayerAndMouse;
+                }
+            }
+        }
+
+        return angleBetweenPlayerAndMouse;
     }
 
     //Returns the angle between two points in degrees
