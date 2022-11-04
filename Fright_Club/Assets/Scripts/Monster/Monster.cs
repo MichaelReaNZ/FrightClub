@@ -26,7 +26,10 @@ public class Monster : MonoBehaviour
     private Vector2[] patrolMarks;
     protected int currentMark;
 
-    //Speed and Patrol state
+    //Sounds
+    private AudioSource monsterSound;
+
+    //Speeds
     private float Speed;
     public float HiddenSpeed;
     public float VisibleSpeed;
@@ -34,6 +37,9 @@ public class Monster : MonoBehaviour
     //Detection Radius
     public int PlayerDetectionRadius;
     public int PlayerTrackingRadius;
+
+    //Return to start
+    private bool returning;
 
 
     /*****
@@ -50,6 +56,7 @@ public class Monster : MonoBehaviour
         isPatrolling = true;
         isIlluminated = false;
         Speed = HiddenSpeed;
+        returning = false;
 
         //Patrol Values setup
         patrolMarks = new Vector2[4]
@@ -60,6 +67,9 @@ public class Monster : MonoBehaviour
             fourthMark
         };
         currentMark = 0;
+
+        //Sets sound
+        monsterSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,7 +94,7 @@ public class Monster : MonoBehaviour
     //The AI for a monster if it is hidden
     protected virtual void HiddenBehaviour()
     {
-        if ( DetectPlayer() && !AwayFromStart() )
+        if ( DetectPlayer() && !AwayFromStart() && !returning )
         {
             isPatrolling = false;
             currentMark = 0;
@@ -134,12 +144,18 @@ public class Monster : MonoBehaviour
     //Move close to the player to attack them
     protected void Attack()
     {
+        if( !monsterSound.isPlaying )
+        {
+            monsterSound.Play();
+        }
+
         this.transform.position = Vector2.MoveTowards(transform.position, PlayerPosition, Speed);
     }
 
     //Return to starting position
     protected void ReturnToStart()
     {
+        returning = true;
         this.transform.position = Vector2.MoveTowards(transform.position, StartingPosition, Speed);
         if ((Vector2)this.transform.position == StartingPosition)
         {
@@ -160,5 +176,13 @@ public class Monster : MonoBehaviour
             }
         }
         return pointToMove;
+    }
+
+    protected void OnCollision2D( Collision2D collidingObject )
+    {
+        if( collidingObject.gameObject.tag == "Wall" )
+        {
+            ReturnToStart();
+        }
     }
 }

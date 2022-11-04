@@ -5,11 +5,12 @@ using UnityEngine;
 public class LightFuel : MonoBehaviour
 {
     [SerializeField] private LanturnLightFieldOfView lanturnLightFieldOfView;
-    
+    private AudioSource lightRefill;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        lightRefill = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class LightFuel : MonoBehaviour
     {
         if ( objectColliding.gameObject.CompareTag("Player") )
         {
+            lightRefill.Play();
             Destroy(this.gameObject);
             
             LanturnLightFieldOfView lanturnLightFieldOfViewComponent = objectColliding.gameObject.GetComponent<LanturnLightFieldOfView>();

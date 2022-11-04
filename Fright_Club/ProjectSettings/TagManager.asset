@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectable
   - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Obstacles
+  - Props
   - Targets
-  - 
+  - Obstacles
   - 
   - 
   - 

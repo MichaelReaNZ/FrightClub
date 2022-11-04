@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class PlayerMovement : MonoBehaviour
 {
     Camera viewCamera;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 2f;
     
     public Rigidbody2D rigidbody;
     private Animator playerAnimation;
