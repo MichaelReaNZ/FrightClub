@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 371327959}
   - component: {fileID: 371327961}
   - component: {fileID: 371327960}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_ChildHallwayBathroom_Middle
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 401126607}
   - component: {fileID: 401126606}
   - component: {fileID: 401126605}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_Hallway_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 467274309}
   - component: {fileID: 467274312}
   - component: {fileID: 467274311}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_ChildHallway_Bottom
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1316,7 +1316,7 @@ GameObject:
   - component: {fileID: 612279185}
   - component: {fileID: 612279187}
   - component: {fileID: 612279186}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_Section_TopBathroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1603,7 +1603,7 @@ GameObject:
   - component: {fileID: 810074281}
   - component: {fileID: 810074283}
   - component: {fileID: 810074282}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Light_Barrier_ChildBedroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1945,7 +1945,7 @@ GameObject:
   - component: {fileID: 853543671}
   - component: {fileID: 853543673}
   - component: {fileID: 853543672}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Light_Barrier_ChildBedroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2159,7 +2159,7 @@ GameObject:
   - component: {fileID: 897862291}
   - component: {fileID: 897862293}
   - component: {fileID: 897862292}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Light_Barrier_ChildBedroom
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2588,7 +2588,7 @@ GameObject:
   - component: {fileID: 1355905415}
   - component: {fileID: 1355905414}
   - component: {fileID: 1355905413}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_Bathroom_Right
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3048,7 +3048,7 @@ GameObject:
   - component: {fileID: 1523650563}
   - component: {fileID: 1523650566}
   - component: {fileID: 1523650565}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_ChildMaster_Middle
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3217,7 +3217,7 @@ GameObject:
   - component: {fileID: 1578986160}
   - component: {fileID: 1578986162}
   - component: {fileID: 1578986161}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_Section_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3513,7 +3513,7 @@ GameObject:
   - component: {fileID: 1658089177}
   - component: {fileID: 1658089176}
   - component: {fileID: 1658089175}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_Master_Left
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3715,7 +3715,7 @@ GameObject:
   - component: {fileID: 1696453389}
   - component: {fileID: 1696453391}
   - component: {fileID: 1696453390}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_Section_TopHallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3872,7 +3872,7 @@ GameObject:
   - component: {fileID: 1787236719}
   - component: {fileID: 1787236722}
   - component: {fileID: 1787236721}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_Child_Left
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4072,7 +4072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1820961242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall Collisions
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4316,7 +4316,7 @@ GameObject:
   - component: {fileID: 1899479329}
   - component: {fileID: 1899479328}
   - component: {fileID: 1899479327}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_Hallway_Right
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4516,7 +4516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012088027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 66, y: 81, z: 91.62029}
+  m_LocalPosition: {x: 60, y: 81, z: 91.62029}
   m_LocalScale: {x: 993.3885, y: 570.60535, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4720,7 +4720,7 @@ GameObject:
   - component: {fileID: 2134425753}
   - component: {fileID: 2134425752}
   - component: {fileID: 2134425751}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall_MasterBathroom_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4981,6 +4981,10 @@ PrefabInstance:
     - target: {fileID: 6967208457869768348, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: lightDimmingSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6967208457869768348, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 6967208457869768349, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: moveSpeed
