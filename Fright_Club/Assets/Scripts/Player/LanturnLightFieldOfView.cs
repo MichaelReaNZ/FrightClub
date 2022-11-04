@@ -262,9 +262,16 @@ public class LanturnLightFieldOfView : MonoBehaviour
     public ViewCastInfo ViewCast(float globalAngle)
     {
         Vector3 direction = DirectionFromAngle(globalAngle, true);
-
         var rayCastResult = Physics2D.Raycast(transform.position, direction, viewRadius, obstacleMask);
-        if (rayCastResult.distance > 0)
+
+        //get the object that was hit
+        var hitObject = rayCastResult.collider.gameObject;
+
+        //if the object is a prop then shine the light through it
+        var hitLayer = hitObject.layer;
+        bool isProp = hitLayer == 6;
+
+        if (!isProp && rayCastResult.distance > 0)
         {
             return new ViewCastInfo(true, rayCastResult.point, rayCastResult.distance, globalAngle);
         }
