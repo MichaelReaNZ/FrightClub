@@ -6,6 +6,7 @@ public class LightFuel : MonoBehaviour
 {
     [SerializeField] private LanturnLightFieldOfView lanturnLightFieldOfView;
     private AudioSource lightRefill;
+    private AudioClip jeff;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +25,10 @@ public class LightFuel : MonoBehaviour
     {
         if ( objectColliding.gameObject.CompareTag("Player") )
         {
-            lightRefill.Play();
+            //GetComponent<AudioSource>().PlayClipAtPoint( lightRefill, this.gameObject.transform.position );
+
             Destroy(this.gameObject);
-            
+
             LanturnLightFieldOfView lanturnLightFieldOfViewComponent = objectColliding.gameObject.GetComponent<LanturnLightFieldOfView>();
             lanturnLightFieldOfViewComponent.ResetLightAngleAndLength();
         }
