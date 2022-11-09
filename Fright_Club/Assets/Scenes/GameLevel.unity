@@ -5250,7 +5250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6967208457869768348, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: limitLightMouseMovementByPlayerDirection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6967208457869768349, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: moveSpeed
