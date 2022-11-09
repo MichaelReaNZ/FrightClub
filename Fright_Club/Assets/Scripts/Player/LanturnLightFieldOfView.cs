@@ -28,6 +28,11 @@ public class LanturnLightFieldOfView : MonoBehaviour
     private float _brightness = 0f;
     public int dimmingSpeed = 10;
     public bool limitLightMouseMovementByPlayerDirection = true;
+    
+    private float _currentLightAnglePercentage;
+    
+    public AudioClip heartBeatSound;
+    public AudioSource heartBeatSoundSource;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +46,8 @@ public class LanturnLightFieldOfView : MonoBehaviour
 
         StartCoroutine(nameof(FindTargetsWithDelay), .2f);
         StartCoroutine(nameof(ReduceLightAngleAndLength));
+        
+        heartBeatSoundSource.Play();
     }
 
     
@@ -355,6 +362,18 @@ public class LanturnLightFieldOfView : MonoBehaviour
                 var material = materials[1];
                 Color currentColor = material.color;
                 material.color = new Color(currentColor.r, currentColor.g, currentColor.b, _brightness);
+            }
+            
+            _currentLightAnglePercentage = viewAngle / originalViewAngle;
+            
+            //set volume of heartbeat sound based on the light angle
+            if (heartBeatSoundSource != null)
+            {
+                //start quiet and get louder as the light angle gets smaller
+                heartBeatSoundSource.volume = 1 -_currentLightAnglePercentage;
+                
+                //speed up the heartbeat as the light angle gets smaller
+                heartBeatSoundSource.pitch = ((1 - _currentLightAnglePercentage) * 3) - 0.75f;
             }
         }
     }
