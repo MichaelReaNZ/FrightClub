@@ -10,49 +10,43 @@ public class PauseScreen : MonoBehaviour
 {
 
     public static bool GameIsActive = true;
-    public GameObject OBJ_PauseScreen;
+    public GameObject PauseScreenUI;
+
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject OBJ_PauseScreen = GameObject.Find("OBJ_PauseScreen");
-        OBJ_PauseScreen.gameObject.SetActive(false);
         transform.Translate(Vector3.down * Time.deltaTime);
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && GameIsActive == true)
         {
             PauseGame();
-
-            if (GameIsActive == false)
-            {
-                if (Input.GetKeyDown("space"))
-                {
-                    ResumeGame();
-                }
-            }
         }
-
+        else if (Input.GetKeyDown("space") && GameIsActive == false)
+        {
+            ResumeGame();
+        }
+        
     }
 
-    public void PauseGame()
+    void PauseGame()
     {
         Time.timeScale = 0f;
+        PauseScreenUI.SetActive(true);
         GameIsActive = false;
-        GameObject OBJ_PauseScreen = GameObject.Find("OBJ_PauseScreen");
-        OBJ_PauseScreen.gameObject.SetActive(true);
-        AudioListener.pause = true;
+        AudioListener.pause = true;   
     }
+
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        PauseScreenUI.SetActive(false);
         GameIsActive = true;
-        GameObject OBJ_PauseScreen = GameObject.Find("OBJ_PauseScreen");
-        OBJ_PauseScreen.gameObject.SetActive(false);
         AudioListener.pause = false;
     }
 
@@ -60,6 +54,10 @@ public class PauseScreen : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+        if (AudioListener.pause == true)
+        {
+            AudioListener.pause = false;
+        }
     }
 
     public void QuitGame()

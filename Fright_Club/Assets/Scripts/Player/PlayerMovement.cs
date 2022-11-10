@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using static PauseScreen;
+using static GameStartPrompt;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -47,8 +49,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerHealth > 0)
+        if ((PlayerHealth > 0) && (GameIsActive == true) && (GameStartPromptIsActive == false))
         {
+            
             //user input
             _movement.x = Input.GetAxisRaw("Horizontal");
             _movement.y = Input.GetAxisRaw("Vertical");
@@ -72,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     playerMovementSound.Play();
                 }
-            } 
+            }
             else
             {
                 playerMovementSound.Stop();
