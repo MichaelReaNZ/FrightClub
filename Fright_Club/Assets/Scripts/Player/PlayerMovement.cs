@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.UI;
 using UnityEngine.Serialization;
 using static PauseScreen;
 using static GameStartPrompt;
@@ -16,10 +19,16 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 _movement;
     private Vector2 StartingPosition;
-    public int PlayerHealth;
-    public bool VictoryLocation;
+    public int playerCourage = 3;
+    public bool isCaught;
 
     private AudioSource playerMovementSound;
+    private PlayableDirector fadeToBlack;
+
+    public TMP_Text overheadSpeech;
+    private int _currentBears;
+    private string startText;
+    public string endText = "Found all the bears. I can go to sleep now! Time to go to bed";
     
     public PlayerDirection currentDirection;
     
@@ -36,20 +45,24 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerHealth = 3;
+        getRemainingBears();
+        startText = "I can't sleep without my " + _currentBears.ToString() + " bears! I have to find them!";
+        printSpeech(startText);
+
+        isCaught = false;
         rigidbody = GetComponent<Rigidbody2D>();
         StartingPosition = this.transform.position;
-        VictoryLocation = false;
 
         playerAnimation = GetComponent<Animator>();
         playerMovementSound = GetComponent<AudioSource>();
+
 }
 
 
     // Update is called once per frame
     void Update()
     {
-        if ((PlayerHealth > 0) && (GameIsActive == true) && (GameStartPromptIsActive == false))
+        if (playerCourage > 0)
         {
             
             //user input
@@ -86,42 +99,70 @@ public class PlayerMovement : MonoBehaviour
    
     private void FixedUpdate()
     {
-        if(lanturnLightFieldOfView == null) return;
-        // Movement
-        rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
-        lanturnLightFieldOfView.SetOrigin(rigidbody.position);
-        //Animation will go here
-        // playerAnimation.SetFloat("PlayerMoveX", _movement.x);
-        // playerAnimation.SetFloat("PlayerMoveY", _movement.y);
-        
-        //use enum direction to set player direction
-        playerAnimation.SetFloat("PlayerMoveX", currentDirection == PlayerDirection.Right ? 1 : currentDirection == PlayerDirection.Left ? -1 : 0);
-        playerAnimation.SetFloat("PlayerMoveY", currentDirection == PlayerDirection.Up ? 1 : currentDirection == PlayerDirection.Down ? -1 : 0);
+        if (!isCaught)
+        {
+            if (lanturnLightFieldOfView == null) return;
+            // Movement
+            rigidbody.MovePosition(rigidbody.position + _movement * (moveSpeed * Time.fixedDeltaTime));
+            lanturnLightFieldOfView.SetOrigin(rigidbody.position);
+            //Animation will go here
+            // playerAnimation.SetFloat("PlayerMoveX", _movement.x);
+            // playerAnimation.SetFloat("PlayerMoveY", _movement.y);
+
+            //use enum direction to set player direction
+            playerAnimation.SetFloat("PlayerMoveX", currentDirection == PlayerDirection.Right ? 1 : currentDirection == PlayerDirection.Left ? -1 : 0);
+            playerAnimation.SetFloat("PlayerMoveY", currentDirection == PlayerDirection.Up ? 1 : currentDirection == PlayerDirection.Down ? -1 : 0);
+        }
     }
 
     private void OnCollisionEnter2D ( Collision2D objectColliding )
     {
-        if (objectColliding.gameObject.CompareTag("Enemy"))
+        if (!isCaught)
         {
-            this.transform.position = StartingPosition;
-            PlayerHealth = PlayerHealth - 1;
-            lanturnLightFieldOfView.ResetLightAngleAndLength();
-        }
-        else
-        {
-            if(objectColliding.gameObject.CompareTag("Finish")  )
+            if (objectColliding.gameObject.CompareTag("Enemy"))
             {
-                VictoryLocation = true;
+                caught();
             }
         }
     }
 
-    private void onCollisionExit2D ( Collision2D objectColliding )
+    /**
+     *  GOVERNS OVERHEAD TEXT 
+     **/
+    public void printSpeech( string _speech )
     {
-        if (objectColliding.gameObject.CompareTag("Finish"))
-        {
-            VictoryLocation = false;
-        }
+        overheadSpeech.text = _speech;
+        StartCoroutine(clearSpeech(4f));
     }
 
+    private IEnumerator clearSpeech( float _time )
+    {
+        yield return new WaitForSeconds(_time);
+        overheadSpeech.text = "";
+    }
+
+    /**
+    *  GOVERNS IF CAUGHT BY MONSTERS    
+    **/
+    public void caught()
+    {
+        isCaught = true;
+        fadeToBlack = GameObject.Find("GameManager").GetComponent<GameManager>().fadeOut;
+        fadeToBlack.Play();
+        StartCoroutine(noLongerCaught(2f));
+    }
+
+    private IEnumerator noLongerCaught( float _time )
+    {
+        yield return new WaitForSeconds(_time);
+        this.transform.position = StartingPosition;
+        playerCourage = playerCourage - 1;
+        lanturnLightFieldOfView.ResetLightAngleAndLength();
+        isCaught = false;
+    }
+
+    public void getRemainingBears()
+    {
+        _currentBears = GameObject.FindGameObjectsWithTag("Collectable").Length;
+    }
 }

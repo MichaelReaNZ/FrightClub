@@ -10,28 +10,29 @@ using static GameStartPrompt;
 public class Collectable : MonoBehaviour
 {
     private AudioSource collectablePickUp;
-    public TextMeshProUGUI CollectablesLeftText;
-    public static int CollectableCount = 3;
-    public GameObject ShowCollectableCount;
+    public string CollectablesLeftText;
+    public int CollectableCount;
+    //public GameObject ShowCollectableCount;
 
     // Start is called before the first frame update
     void Start()
     {
+        CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
         collectablePickUp = GetComponent<AudioSource>();
-        CollectablesLeftText.text = CollectableCount.ToString() + " left";
+        CollectablesLeftText = CollectableCount.ToString() + " left";
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameStartPromptIsActive == true)
-        {
-            ShowCollectableCount.SetActive(false);
-        }
-        else
-        {
-            ShowCollectableCount.SetActive(true);
-        }
+        //if (GameStartPromptIsActive == true)
+        //{
+       //     ShowCollectableCount.SetActive(false);
+       // }
+       //else
+       // {
+        //    ShowCollectableCount.SetActive(true);
+       // }
     }
 
 
@@ -42,9 +43,20 @@ public class Collectable : MonoBehaviour
         if ( objectColliding.gameObject.CompareTag("Player") )
         {
             CollectableCount -= 1;
-            CollectablesLeftText.text = CollectableCount.ToString() + " left";
+            CollectablesLeftText = CollectableCount.ToString() + " left";
             collectablePickUp.Play();
             Destroy(this.gameObject);
+
+            GameObject _player = GameObject.Find("Player");
+            if ( GameObject.FindGameObjectsWithTag("Collectable").Length >= 1 )
+            {
+                int bearsLeft = GameObject.FindGameObjectsWithTag("Collectable").Length - 1;
+                _player.GetComponent<PlayerMovement>().printSpeech("A bear! " + bearsLeft.ToString() + " to get to safety!");
+            }
+            else
+            {
+                _player.GetComponent<PlayerMovement>().printSpeech(_player.GetComponent<PlayerMovement>().endText);
+            }
         }
     }
 }
