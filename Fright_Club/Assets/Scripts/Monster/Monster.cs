@@ -46,6 +46,7 @@ public class Monster : MonoBehaviour
 
     // change enemy tag
     public string newtag;
+    public string startingtag;
     
 
 
@@ -64,7 +65,7 @@ public class Monster : MonoBehaviour
         isIlluminated = false;
         Speed = HiddenSpeed;
         returning = false;
-        gameObject.tag = "Enemy";
+        
         
 
         //Patrol Values setup
@@ -103,6 +104,9 @@ public class Monster : MonoBehaviour
     //The AI for a monster if it is hidden
     protected virtual void HiddenBehaviour()
     {
+        gameObject.tag = startingtag;
+        
+
         if ( DetectPlayer() && !AwayFromStart() && !returning )
         {
             isPatrolling = false;
@@ -196,8 +200,8 @@ public class Monster : MonoBehaviour
         }
     }
 
-   // chnage monster sprite
-    private void Update()
+    // chnage monster sprite
+    protected void Update()
     {
         if (!isIlluminated)
         {
@@ -209,6 +213,6 @@ public class Monster : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().sprite = newSprite;
         }
-        
+
     }
 }
