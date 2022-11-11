@@ -41,6 +41,13 @@ public class Monster : MonoBehaviour
     //Return to start
     private bool returning;
 
+    //chnage sprite
+    public Sprite newSprite, originalSprite;
+
+    // change enemy tag
+    public string newtag;
+    
+
 
     /*****
      * 
@@ -57,6 +64,8 @@ public class Monster : MonoBehaviour
         isIlluminated = false;
         Speed = HiddenSpeed;
         returning = false;
+        gameObject.tag = "Enemy";
+        
 
         //Patrol Values setup
         patrolMarks = new Vector2[4]
@@ -119,6 +128,7 @@ public class Monster : MonoBehaviour
     protected virtual void IlluminatedBehaviour()
     {
         //DO NOTHING
+        gameObject.tag = newtag;
     }
 
     //Detect if the player is nearby the monster
@@ -184,5 +194,21 @@ public class Monster : MonoBehaviour
         {
             ReturnToStart();
         }
+    }
+
+   // chnage monster sprite
+    private void Update()
+    {
+        if (!isIlluminated)
+        {
+            GetComponent<SpriteRenderer>().sprite = originalSprite;
+
+        }
+
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = newSprite;
+        }
+        
     }
 }
