@@ -1381,7 +1381,7 @@ GameObject:
   - component: {fileID: 401126607}
   - component: {fileID: 401126606}
   - component: {fileID: 401126605}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Wall_Hallway_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2341,7 +2341,7 @@ GameObject:
   - component: {fileID: 543175402}
   - component: {fileID: 543175401}
   - component: {fileID: 543175400}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Wall_Lounge_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2989,7 +2989,7 @@ GameObject:
   - component: {fileID: 641010891}
   - component: {fileID: 641010890}
   - component: {fileID: 641010889}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Wall_Office_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6516,7 +6516,7 @@ GameObject:
   - component: {fileID: 1253935593}
   - component: {fileID: 1253935592}
   - component: {fileID: 1253935591}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Wall_Bathroom_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -7767,7 +7767,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -8070,7 +8070,7 @@ GameObject:
   - component: {fileID: 1459030357}
   - component: {fileID: 1459030356}
   - component: {fileID: 1459030355}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Wall_Kitchen_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -8487,7 +8487,7 @@ GameObject:
   - component: {fileID: 1523650563}
   - component: {fileID: 1523650566}
   - component: {fileID: 1523650565}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Wall_Child_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11387,7 +11387,7 @@ GameObject:
   - component: {fileID: 2134425753}
   - component: {fileID: 2134425752}
   - component: {fileID: 2134425751}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Wall_Master_Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
