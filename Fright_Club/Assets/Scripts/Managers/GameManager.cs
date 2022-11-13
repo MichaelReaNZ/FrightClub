@@ -32,13 +32,6 @@ public class GameManager : MonoBehaviour
         {
             backgroundMusic.Play();
         }
-
-        _playerCourage = GameObject.Find("Player").GetComponent<PlayerMovement>().playerCourage; //Will need to be changed if we add another script for player
-
-        if (_playerCourage <= 0) // Defeat Condition
-        {
-            SceneManager.LoadScene("GameOver");
-        }
     }
 
     public void checkRemainingBears()

@@ -12,7 +12,6 @@ public class Monster_Abberant : Monster
     //The AI for a monster if it is hidden
     protected override void HiddenBehaviour()
     {
-        gameObject.tag = startingtag;
         if ( (Vector2)this.transform.position != StartingPosition )
             ReturnToStart();
     }
@@ -20,8 +19,6 @@ public class Monster_Abberant : Monster
     //The AI for a monster if it is in the light of the lantern
     protected override void IlluminatedBehaviour()
     {
-        gameObject.tag = newtag;
-
         if ( DetectPlayer() && !AwayFromStart() )
         {
             Attack();

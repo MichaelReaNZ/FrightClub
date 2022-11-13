@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 using static PauseScreen;
 using static GameStartPrompt;
 
@@ -23,7 +24,10 @@ public class PlayerMovement : MonoBehaviour
     public bool isCaught;
 
     private AudioSource playerMovementSound;
+
     private PlayableDirector fadeToBlack;
+    private PlayableDirector gameOver;
+    private PlayableDirector gameVictory;
 
     public TMP_Text overheadSpeech;
     private int _currentBears;
@@ -62,36 +66,39 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerCourage > 0)
+        if( !isCaught )
         {
-            
-            //user input
-            _movement.x = Input.GetAxisRaw("Horizontal");
-            _movement.y = Input.GetAxisRaw("Vertical");
+            if (playerCourage > 0)
+            {
 
-            currentDirection = _movement.x switch
-            {
-                //set current direction enum
-                > 0 => PlayerDirection.Right,
-                < 0 => PlayerDirection.Left,
-                _ => _movement.y switch
-                {
-                    > 0 => PlayerDirection.Up,
-                    < 0 => PlayerDirection.Down,
-                    _ => currentDirection
-                }
-            };
+                //user input
+                _movement.x = Input.GetAxisRaw("Horizontal");
+                _movement.y = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            {
-                if (!playerMovementSound.isPlaying)
+                currentDirection = _movement.x switch
                 {
-                    playerMovementSound.Play();
+                    //set current direction enum
+                    > 0 => PlayerDirection.Right,
+                    < 0 => PlayerDirection.Left,
+                    _ => _movement.y switch
+                    {
+                        > 0 => PlayerDirection.Up,
+                        < 0 => PlayerDirection.Down,
+                        _ => currentDirection
+                    }
+                };
+
+                if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+                {
+                    if (!playerMovementSound.isPlaying)
+                    {
+                        playerMovementSound.Play();
+                    }
                 }
-            }
-            else
-            {
-                playerMovementSound.Stop();
+                else
+                {
+                    playerMovementSound.Stop();
+                }
             }
         }
     }
@@ -132,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
     public void printSpeech( string _speech )
     {
         overheadSpeech.text = _speech;
-        StartCoroutine(clearSpeech(4f));
+        StartCoroutine(clearSpeech(6f));
     }
 
     private IEnumerator clearSpeech( float _time )
@@ -147,22 +154,46 @@ public class PlayerMovement : MonoBehaviour
     public void caught()
     {
         isCaught = true;
-        fadeToBlack = GameObject.Find("GameManager").GetComponent<GameManager>().fadeOut;
-        fadeToBlack.Play();
-        StartCoroutine(noLongerCaught(2f));
+        if (playerCourage > 1)
+        {
+            fadeToBlack = GameObject.Find("GameManager").GetComponent<GameManager>().fadeOut;
+            fadeToBlack.Play();
+            StartCoroutine(noLongerCaught(6f));
+        }
+        else
+        {
+            gameOver = GameObject.Find("GameDefeat").GetComponent<PlayableDirector>();
+            gameOver.Play();
+            StartCoroutine(gameOverSceneLoad(6f));
+        }
     }
 
     private IEnumerator noLongerCaught( float _time )
     {
         yield return new WaitForSeconds(_time);
-        this.transform.position = StartingPosition;
         playerCourage = playerCourage - 1;
         lanturnLightFieldOfView.ResetLightAngleAndLength();
+        this.transform.position = StartingPosition;
+
+        if( playerCourage > 1 )
+        {
+            printSpeech("I won't be scared! I will find my bears!");
+        }
+        else
+        {
+            printSpeech("I'm so scared... One more try..!");
+        }
         isCaught = false;
     }
 
     public void getRemainingBears()
     {
         _currentBears = GameObject.FindGameObjectsWithTag("Collectable").Length;
+    }
+
+    private IEnumerator gameOverSceneLoad(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        SceneManager.LoadScene("GameOver");
     }
 }

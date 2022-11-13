@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 public class VictoryCondition : MonoBehaviour
 {
     private GameObject _player;
-    private PlayableDirector fadeToBlack;
+    private PlayableDirector gameVictory;
 
     void Start()
     {
         _player = GameObject.Find("Player");
-        fadeToBlack = GameObject.Find("GameManager").GetComponent<GameManager>().fadeOut;
+        gameVictory = GameObject.Find("GameVictory").GetComponent<PlayableDirector>();
     }
 
     void OnCollisionEnter2D(Collision2D objectColliding)
@@ -22,10 +22,16 @@ public class VictoryCondition : MonoBehaviour
             if (GameObject.FindGameObjectsWithTag("Collectable").Length <= 0)
             {
                 _player.GetComponent<PlayerMovement>().printSpeech("Goodnight, my bears...");
-                fadeToBlack.Play();
-                StartCoroutine(displayVictory(2f));
+                StartCoroutine(showVictoryCutscene(2f));
+                StartCoroutine(displayVictory(6f));
             }
         }
+    }
+
+    private IEnumerator showVictoryCutscene(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        gameVictory.Play();
     }
 
     private IEnumerator displayVictory(float _time)

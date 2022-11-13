@@ -44,11 +44,6 @@ public class Monster : MonoBehaviour
     //chnage sprite
     public Sprite newSprite, originalSprite;
 
-    // change enemy tag
-    public string newtag;
-    public string startingtag;
-    
-
 
     /*****
      * 
@@ -104,7 +99,6 @@ public class Monster : MonoBehaviour
     //The AI for a monster if it is hidden
     protected virtual void HiddenBehaviour()
     {
-        gameObject.tag = startingtag;
         
 
         if ( DetectPlayer() && !AwayFromStart() && !returning )
@@ -132,7 +126,6 @@ public class Monster : MonoBehaviour
     protected virtual void IlluminatedBehaviour()
     {
         //DO NOTHING
-        gameObject.tag = newtag;
     }
 
     //Detect if the player is nearby the monster

@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/OpeningCutscene.unity
+    guid: 59f7d2c6e0526ef42914575d200f8877
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/GameLevel.unity
     guid: 8e090306b1d24b143961378595d96d54
-  - enabled: 1
-    path: Assets/Scenes/Sandbox.unity
-    guid: ec1d6b6ad4e76fc4c9d544a3450d29de
   - enabled: 1
     path: Assets/Scenes/GameComplete.unity
     guid: 6cf7f82c227f8c943bf48e45c32024e0
