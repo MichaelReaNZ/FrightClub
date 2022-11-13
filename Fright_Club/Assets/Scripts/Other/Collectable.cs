@@ -10,29 +10,30 @@ using static GameStartPrompt;
 public class Collectable : MonoBehaviour
 {
     private AudioSource collectablePickUp;
-    public string CollectablesLeftText;
-    public int CollectableCount;
-    //public GameObject ShowCollectableCount;
+    // public string CollectablesLeftText;
+    public static int CollectableCount;
+    public GameObject ShowCollectableCount;
+    public TextMeshProUGUI CollectablesLeftText;
 
     // Start is called before the first frame update
     void Start()
     {
         CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
         collectablePickUp = GetComponent<AudioSource>();
-        CollectablesLeftText = CollectableCount.ToString() + " left";
+        CollectablesLeftText.text = CollectableCount.ToString() + " left";
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (GameStartPromptIsActive == true)
-        //{
-       //     ShowCollectableCount.SetActive(false);
-       // }
-       //else
-       // {
-        //    ShowCollectableCount.SetActive(true);
-       // }
+        if (GameStartPromptIsActive == true)
+        {
+            ShowCollectableCount.SetActive(false);
+        }
+       else
+        {
+            ShowCollectableCount.SetActive(true);
+        }
     }
 
 
@@ -43,7 +44,7 @@ public class Collectable : MonoBehaviour
         if ( objectColliding.gameObject.CompareTag("Player") )
         {
             CollectableCount -= 1;
-            CollectablesLeftText = CollectableCount.ToString() + " left";
+            CollectablesLeftText.text = CollectableCount.ToString() + " left";
             collectablePickUp.Play();
             Destroy(this.gameObject);
 

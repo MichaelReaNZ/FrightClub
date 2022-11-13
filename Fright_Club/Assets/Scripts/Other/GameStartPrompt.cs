@@ -24,19 +24,19 @@ public class GameStartPrompt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Scene CurrentScene = SceneManager.GetActiveScene();
+        /*Scene CurrentScene = SceneManager.GetActiveScene();
         string CurrentSceneName = CurrentScene.name;
 
         if (CurrentSceneName == "GameLevel")
         {
             ActivateGameStartPrompt();
-        }
+        }*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void ActivateGameStartPrompt()
@@ -112,6 +112,6 @@ public class GameStartPrompt : MonoBehaviour
         GameStart_Prompt.SetActive(false);
         GameStartPromptIsActive = false;
         Time.timeScale = 1f;
-        OBJ_BTN_11.SetActive(false); 
+        OBJ_BTN_11.SetActive(false);
     }
 }

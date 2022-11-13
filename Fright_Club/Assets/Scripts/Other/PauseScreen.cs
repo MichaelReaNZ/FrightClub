@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static GameManager;
+using static GameStartPrompt;
 
 public class PauseScreen : MonoBehaviour
 {
@@ -22,16 +23,18 @@ public class PauseScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * Time.deltaTime);
-        if (Input.GetKeyDown("space") && GameIsActive == true)
+        if (GameStartPromptIsActive == false)
         {
-            PauseGame();
+            transform.Translate(Vector3.down * Time.deltaTime);
+            if (Input.GetKeyDown("space") && GameIsActive == true)
+            {
+                PauseGame();
+            }
+            else if (Input.GetKeyDown("space") && GameIsActive == false)
+            {
+                ResumeGame();
+            }
         }
-        else if (Input.GetKeyDown("space") && GameIsActive == false)
-        {
-            ResumeGame();
-        }
-        
     }
 
     void PauseGame()

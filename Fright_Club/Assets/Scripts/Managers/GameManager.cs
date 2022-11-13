@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 {
     public PlayableDirector fadeOut;
 
-    public int CollectableCount;
+    // public int CollectableCount;
     public int _playerCourage;
     private Vector3 PlayerTransform;
     private AudioSource backgroundMusic;

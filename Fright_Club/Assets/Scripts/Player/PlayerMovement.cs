@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if( !isCaught )
         {
-            if (playerCourage > 0)
+            if (playerCourage > 0) //&& (GameIsActive == true) && (GameStartPromptIsActive == false))
             {
 
                 //user input
