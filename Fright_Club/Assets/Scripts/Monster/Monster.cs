@@ -44,6 +44,16 @@ public class Monster : MonoBehaviour
     //chnage sprite
     public Sprite newSprite, originalSprite;
 
+    // change enemy tag
+    public string newtag;
+    public string startingtag;
+
+
+    public Vector3 Originalscale;
+    public Vector3 newscale;
+    public Vector3 Hitbox;
+
+
 
     /*****
      * 
@@ -60,8 +70,8 @@ public class Monster : MonoBehaviour
         isIlluminated = false;
         Speed = HiddenSpeed;
         returning = false;
-        
-        
+
+
 
         //Patrol Values setup
         patrolMarks = new Vector2[4]
@@ -73,9 +83,15 @@ public class Monster : MonoBehaviour
         };
         currentMark = 0;
 
+
+
         //Sets sound
-        monsterSound = GetComponent<AudioSource>();
+        //monsterSound = GetComponent<AudioSource>();
+
+
     }
+
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -84,7 +100,7 @@ public class Monster : MonoBehaviour
         PlayerPosition = GameObject.Find("Player").transform.position;
 
         //Checks for illumination status and confers behaviour based on it
-        if ( !isIlluminated )
+        if (!isIlluminated)
         {
             Speed = HiddenSpeed;
             HiddenBehaviour();
@@ -99,9 +115,10 @@ public class Monster : MonoBehaviour
     //The AI for a monster if it is hidden
     protected virtual void HiddenBehaviour()
     {
-        
+        gameObject.transform.localScale = Originalscale;
+        gameObject.tag = startingtag;
 
-        if ( DetectPlayer() && !AwayFromStart() && !returning )
+        if (DetectPlayer() && !AwayFromStart() && !returning)
         {
             isPatrolling = false;
             currentMark = 0;
@@ -126,13 +143,15 @@ public class Monster : MonoBehaviour
     protected virtual void IlluminatedBehaviour()
     {
         //DO NOTHING
+        gameObject.tag = newtag;
+        gameObject.transform.localScale = newscale;
     }
 
     //Detect if the player is nearby the monster
     protected bool DetectPlayer()
     {
-        if ( this.transform.position.x <= PlayerPosition.x + PlayerDetectionRadius && this.transform.position.y <= PlayerPosition.y + PlayerDetectionRadius &&
-             this.transform.position.x >= PlayerPosition.x - PlayerDetectionRadius && this.transform.position.y >= PlayerPosition.y - PlayerDetectionRadius )
+        if (this.transform.position.x <= PlayerPosition.x + PlayerDetectionRadius && this.transform.position.y <= PlayerPosition.y + PlayerDetectionRadius &&
+             this.transform.position.x >= PlayerPosition.x - PlayerDetectionRadius && this.transform.position.y >= PlayerPosition.y - PlayerDetectionRadius)
             return true;
         else
             return false;
@@ -141,8 +160,8 @@ public class Monster : MonoBehaviour
     // Detect if Monster is away from its starting position by the length of PlayerTrackingRadius
     protected bool AwayFromStart()
     {
-        if ( this.transform.position.x <= StartingPosition.x + PlayerTrackingRadius && this.transform.position.y <= StartingPosition.y + PlayerTrackingRadius &&
-             this.transform.position.x >= StartingPosition.x - PlayerTrackingRadius && this.transform.position.y >= StartingPosition.y - PlayerTrackingRadius )
+        if (this.transform.position.x <= StartingPosition.x + PlayerTrackingRadius && this.transform.position.y <= StartingPosition.y + PlayerTrackingRadius &&
+             this.transform.position.x >= StartingPosition.x - PlayerTrackingRadius && this.transform.position.y >= StartingPosition.y - PlayerTrackingRadius)
             return false;
         else
             return true;
@@ -151,7 +170,7 @@ public class Monster : MonoBehaviour
     //Move close to the player to attack them
     protected void Attack()
     {
-        if( !monsterSound.isPlaying )
+        if (!monsterSound.isPlaying)
         {
             monsterSound.Play();
         }
@@ -171,13 +190,13 @@ public class Monster : MonoBehaviour
     }
 
     // Move along set routes, points must be implemented into the editor on creation
-    protected virtual int Patrol( int pointToMove )
+    protected virtual int Patrol(int pointToMove)
     {
         this.transform.position = Vector2.MoveTowards(transform.position, patrolMarks[pointToMove], Speed);
-        if( this.transform.position.x == patrolMarks[pointToMove].x && this.transform.position.y == patrolMarks[pointToMove].y )
+        if (this.transform.position.x == patrolMarks[pointToMove].x && this.transform.position.y == patrolMarks[pointToMove].y)
         {
             pointToMove++;
-            if( pointToMove == patrolMarks.Length )
+            if (pointToMove == patrolMarks.Length)
             {
                 pointToMove = 0;
             }
@@ -185,25 +204,27 @@ public class Monster : MonoBehaviour
         return pointToMove;
     }
 
-    protected void OnCollision2D( Collision2D collidingObject )
+    protected void OnCollision2D(Collision2D collidingObject)
     {
-        if( collidingObject.gameObject.tag == "Wall" )
+        if (collidingObject.gameObject.tag == "Wall")
         {
             ReturnToStart();
         }
     }
 
     // chnage monster sprite
-    protected void Update()
+    void Update()
     {
         if (!isIlluminated)
         {
+            GetComponent<BoxCollider2D>().size = Hitbox;
             GetComponent<SpriteRenderer>().sprite = originalSprite;
 
         }
 
         else
         {
+            GetComponent<BoxCollider2D>().size = Hitbox;
             GetComponent<SpriteRenderer>().sprite = newSprite;
         }
 

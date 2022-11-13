@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 1702463948}
   - component: {fileID: 1702463947}
   - component: {fileID: 6747554100038392363}
+  - component: {fileID: 7689953323291578662}
   m_Layer: 7
   m_Name: Monster_Abberant
-  m_TagString: Enemy
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,8 +32,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3716512314864279718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: -0.09, y: -0.07, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 273044190, guid: 29f935dce50f142468ed8d251c749b2a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.15690327, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4c05d0cc69cd6b244a21039384f05a57, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,6 +111,13 @@ MonoBehaviour:
   VisibleSpeed: 0.5
   PlayerDetectionRadius: 40
   PlayerTrackingRadius: 40
+  newSprite: {fileID: 273044190, guid: 29f935dce50f142468ed8d251c749b2a, type: 3}
+  originalSprite: {fileID: 21300000, guid: 4c05d0cc69cd6b244a21039384f05a57, type: 3}
+  newtag: Enemy
+  startingtag: Wall
+  Originalscale: {x: 10, y: 10, z: 1}
+  newscale: {x: 1, y: 1, z: 1}
+  Hitbox: {x: 1, y: 1, z: 1}
 --- !u!50 &882416081
 Rigidbody2D:
   serializedVersion: 4
@@ -154,7 +162,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3716512314864279718}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -164,7 +172,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.9022512, y: 19.2}
+    oldSize: {x: 1.64, y: 2.6}
     newSize: {x: 10.8, y: 19.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -487,7 +495,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3716512314864279718}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 42b744fc6c6b92e41b8a85adae8faf01, type: 2}
   m_CullingMode: 0
@@ -595,3 +603,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &7689953323291578662
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3716512314864279718}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.014698654, y: 0.014699459}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.64, y: 2.6}
+    newSize: {x: 10.8, y: 19.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2289853, y: 2.2375588}
+  m_EdgeRadius: 0
