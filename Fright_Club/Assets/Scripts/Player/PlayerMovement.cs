@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         getRemainingBears();
-        startText = "I can't sleep without my " + _currentBears.ToString() + " bears! I have to find them!";
+        startText = "I can't sleep without my " + getRemainingBears().ToString() + " bears! I have to find them!";
         printSpeech(startText);
 
         isCaught = false;
@@ -158,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
         {
             fadeToBlack = GameObject.Find("GameManager").GetComponent<GameManager>().fadeOut;
             fadeToBlack.Play();
+            StartCoroutine(refreshMovement(0.5f));
             StartCoroutine(noLongerCaught(6f));
         }
         else
@@ -168,12 +169,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private IEnumerator refreshMovement( float _time )
+    {
+        yield return new WaitForSeconds(_time);
+        this.transform.position = StartingPosition;
+    }
+
     private IEnumerator noLongerCaught( float _time )
     {
         yield return new WaitForSeconds(_time);
         playerCourage = playerCourage - 1;
         lanturnLightFieldOfView.ResetLightAngleAndLength();
-        this.transform.position = StartingPosition;
+        
 
         if( playerCourage > 1 )
         {
@@ -186,9 +193,9 @@ public class PlayerMovement : MonoBehaviour
         isCaught = false;
     }
 
-    public void getRemainingBears()
+    public int getRemainingBears()
     {
-        _currentBears = GameObject.FindGameObjectsWithTag("Collectable").Length;
+        return GameObject.FindGameObjectsWithTag("Collectable").Length -1;
     }
 
     private IEnumerator gameOverSceneLoad(float _time)

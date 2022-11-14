@@ -25,12 +25,18 @@ public class LightFuel : MonoBehaviour
     {
         if ( objectColliding.gameObject.CompareTag("Player") )
         {
-            //GetComponent<AudioSource>().PlayClipAtPoint( lightRefill, this.gameObject.transform.position );
-
-            Destroy(this.gameObject);
+            if (!lightRefill.isPlaying)
+                lightRefill.Play();
+            StartCoroutine(destroyObject(0.6f));
 
             LanturnLightFieldOfView lanturnLightFieldOfViewComponent = objectColliding.gameObject.GetComponent<LanturnLightFieldOfView>();
             lanturnLightFieldOfViewComponent.ResetLightAngleAndLength();
         }
+    }
+
+    private IEnumerator destroyObject(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        Destroy(this.gameObject);
     }
 }

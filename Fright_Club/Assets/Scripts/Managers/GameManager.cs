@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int _playerCourage;
     private Vector3 PlayerTransform;
     private AudioSource backgroundMusic;
+    private int CollectableCount;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void checkRemainingBears()
     {
-        CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
+        CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length - 1;
     }
 
     void GameRestart()

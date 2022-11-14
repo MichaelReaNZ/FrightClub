@@ -11,14 +11,17 @@ public class Collectable : MonoBehaviour
 {
     private AudioSource collectablePickUp;
     // public string CollectablesLeftText;
-    public static int CollectableCount;
+    public int CollectableCount;
     public GameObject ShowCollectableCount;
     public TextMeshProUGUI CollectablesLeftText;
+    private bool isCollected;
 
     // Start is called before the first frame update
     void Start()
     {
-        CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
+        isCollected = false;
+
+        CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length - 1;
         collectablePickUp = GetComponent<AudioSource>();
         CollectablesLeftText.text = CollectableCount.ToString() + " left";
     }
@@ -41,17 +44,21 @@ public class Collectable : MonoBehaviour
     //Destroys this on collision with the player
     private void OnCollisionEnter2D( Collision2D objectColliding )
     {
-        if ( objectColliding.gameObject.CompareTag("Player") )
+        if ( objectColliding.gameObject.CompareTag("Player") && !isCollected )
         {
+            isCollected = true;
             CollectableCount -= 1;
             CollectablesLeftText.text = CollectableCount.ToString() + " left";
-            collectablePickUp.Play();
-            Destroy(this.gameObject);
+            
+            if(!collectablePickUp.isPlaying)
+                collectablePickUp.Play();
+            
+            StartCoroutine(destroyObject(0.6f));
 
             GameObject _player = GameObject.Find("Player");
             if ( GameObject.FindGameObjectsWithTag("Collectable").Length >= 1 )
             {
-                int bearsLeft = GameObject.FindGameObjectsWithTag("Collectable").Length - 1;
+                int bearsLeft = GameObject.FindGameObjectsWithTag("Collectable").Length -2;
                 _player.GetComponent<PlayerMovement>().printSpeech("A bear! " + bearsLeft.ToString() + " to get to safety!");
             }
             else
@@ -59,5 +66,11 @@ public class Collectable : MonoBehaviour
                 _player.GetComponent<PlayerMovement>().printSpeech(_player.GetComponent<PlayerMovement>().endText);
             }
         }
+    }
+
+    private IEnumerator destroyObject( float _time )
+    {
+        yield return new WaitForSeconds(_time);
+        Destroy(this.gameObject);
     }
 }
