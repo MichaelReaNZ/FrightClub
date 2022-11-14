@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
 
     public int getRemainingBears()
     {
-        return GameObject.FindGameObjectsWithTag("Collectable").Length -1;
+        return GameObject.FindGameObjectsWithTag("Collectable").Length;
     }
 
     private IEnumerator gameOverSceneLoad(float _time)

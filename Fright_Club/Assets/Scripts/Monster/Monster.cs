@@ -48,7 +48,6 @@ public class Monster : MonoBehaviour
     public string newtag;
     public string startingtag;
 
-
     public Vector3 Originalscale;
     public Vector3 newscale;
     public Vector3 Hitbox;
@@ -70,6 +69,7 @@ public class Monster : MonoBehaviour
         isIlluminated = false;
         Speed = HiddenSpeed;
         returning = false;
+        monsterSound = GetComponent<AudioSource>();
 
 
 
@@ -87,8 +87,6 @@ public class Monster : MonoBehaviour
 
         //Sets sound
         //monsterSound = GetComponent<AudioSource>();
-
-
     }
 
 
@@ -118,7 +116,7 @@ public class Monster : MonoBehaviour
         gameObject.transform.localScale = Originalscale;
         gameObject.tag = startingtag;
 
-        if (DetectPlayer() && !AwayFromStart() && !returning)
+        if (DetectPlayer() && !AwayFromStart() && !returning && !PlayerFleeing() )
         {
             isPatrolling = false;
             currentMark = 0;
@@ -147,6 +145,11 @@ public class Monster : MonoBehaviour
         gameObject.transform.localScale = newscale;
     }
 
+    protected bool PlayerFleeing()
+    {
+        return GameObject.Find("Player").GetComponent<PlayerMovement>().isCaught;
+    }
+
     //Detect if the player is nearby the monster
     protected bool DetectPlayer()
     {
@@ -170,10 +173,6 @@ public class Monster : MonoBehaviour
     //Move close to the player to attack them
     protected void Attack()
     {
-        if (!monsterSound.isPlaying)
-        {
-            monsterSound.Play();
-        }
 
         this.transform.position = Vector2.MoveTowards(transform.position, PlayerPosition, Speed);
     }
@@ -219,7 +218,6 @@ public class Monster : MonoBehaviour
         {
             GetComponent<BoxCollider2D>().size = Hitbox;
             GetComponent<SpriteRenderer>().sprite = originalSprite;
-
         }
 
         else
