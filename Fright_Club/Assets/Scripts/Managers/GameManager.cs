@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using static Collectable;
+using static GameStartPrompt;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     // public int CollectableCount;
     public int _playerCourage;
+    public GameObject bearCounter;
     private Vector3 PlayerTransform;
     private AudioSource backgroundMusic;
     private int CollectableCount;
@@ -32,6 +34,15 @@ public class GameManager : MonoBehaviour
         if( backgroundMusic != null && !backgroundMusic.isPlaying )
         {
             backgroundMusic.Play();
+        }
+
+        if (GameStartPromptIsActive == true)
+        {
+            bearCounter.SetActive(false);
+        }
+        else
+        {
+            bearCounter.SetActive(true);
         }
     }
 
