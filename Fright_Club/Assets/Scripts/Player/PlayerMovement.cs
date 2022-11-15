@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public TMP_Text overheadSpeech;
     private int _currentBears;
     private string startText;
-    public string endText = "Found all the bears. I can go to sleep now! Time to go to bed";
+    public string endText = "'Found all the bears. I can go to sleep now! Time to go to bed'";
     
     public PlayerDirection currentDirection;
     
@@ -49,8 +49,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        getRemainingBears();
-        startText = "I can't sleep without my " + getRemainingBears().ToString() + " bears! I have to find them!";
         printSpeech(startText);
 
         isCaught = false;
@@ -185,11 +183,11 @@ public class PlayerMovement : MonoBehaviour
 
         if( playerCourage > 1 )
         {
-            printSpeech("I won't be scared! I will find my bears!");
+            printSpeech("'I won't be scared! I will find my bears!'");
         }
         else
         {
-            printSpeech("I'm so scared... One more try..!");
+            printSpeech("'I'm so scared... One more try..!'");
         }
         isCaught = false;
     }
