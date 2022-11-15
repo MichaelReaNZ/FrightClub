@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 466913765}
   - component: {fileID: 466913758}
   - component: {fileID: 466913751}
+  - component: {fileID: -8985103114212629746}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,7 +217,7 @@ SpriteRenderer:
   m_SortingLayerID: 2011078881
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 273044190, guid: 29f935dce50f142468ed8d251c749b2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cbf03cba8eadd264c9d0be6c3b0100ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -241,9 +242,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   rigidbody: {fileID: 0}
-  PlayerHealth: 0
-  VictoryLocation: 0
-  _fieldOfView: {fileID: 6967208457869768348}
+  playerCourage: 3
+  isCaught: 0
+  overheadSpeech: {fileID: 0}
+  endText: Found all the bears. I can go to sleep now! Time to go to bed
+  currentDirection: 0
+  lanturnLightFieldOfView: {fileID: 6967208457869768348}
 --- !u!114 &6967208457869768348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,15 +262,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: 125
   viewAngle: 25
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 128
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
   monstersWithinFlashlight: []
   meshResolution: 1
   viewMeshFilter: {fileID: 1531191169}
+  dimViewAngle: 0
+  dimViewRadius: 0
+  dimBrightness: 0
+  dimmingSpeed: 10
+  limitLightMouseMovementByPlayerDirection: 1
+  heartBeatSound: {fileID: 0}
+  heartBeatSoundSource: {fileID: 0}
 --- !u!50 &2095743834
 Rigidbody2D:
   serializedVersion: 4
@@ -305,7 +313,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.9022512, y: 19.2}
+    oldSize: {x: 4.36, y: 6.86}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -331,7 +339,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.9022512, y: 19.2}
+    oldSize: {x: 4.36, y: 6.86}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -762,3 +770,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!81 &-8985103114212629746
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6967208457869768345}
+  m_Enabled: 1

@@ -21,7 +21,7 @@ public class Collectable : MonoBehaviour
     {
         isCollected = false;
 
-        CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length - 1;
+        CollectableCount = GameObject.FindGameObjectsWithTag("Collectable").Length;
         collectablePickUp = GetComponent<AudioSource>();
         CollectablesLeftText.text = CollectableCount.ToString() + " left";
     }
@@ -47,8 +47,6 @@ public class Collectable : MonoBehaviour
         if ( objectColliding.gameObject.CompareTag("Player") && !isCollected )
         {
             isCollected = true;
-            CollectableCount -= 1;
-            CollectablesLeftText.text = CollectableCount.ToString() + " left";
             
             if(!collectablePickUp.isPlaying)
                 collectablePickUp.Play();
@@ -56,14 +54,16 @@ public class Collectable : MonoBehaviour
             StartCoroutine(destroyObject(0.6f));
 
             GameObject _player = GameObject.Find("Player");
-            if ( GameObject.FindGameObjectsWithTag("Collectable").Length >= 1 )
+            if ( GameObject.FindGameObjectsWithTag("Collectable").Length >= 2 )
             {
-                int bearsLeft = GameObject.FindGameObjectsWithTag("Collectable").Length -2;
+                int bearsLeft = GameObject.FindGameObjectsWithTag("Collectable").Length - 1;
+                CollectablesLeftText.text = (GameObject.FindGameObjectsWithTag("Collectable").Length - 1).ToString() + " left";
                 _player.GetComponent<PlayerMovement>().printSpeech("A bear! " + bearsLeft.ToString() + " to get to safety!");
             }
             else
             {
                 _player.GetComponent<PlayerMovement>().printSpeech(_player.GetComponent<PlayerMovement>().endText);
+                CollectablesLeftText.text = "Head to your bed";
             }
         }
     }

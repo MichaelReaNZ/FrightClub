@@ -119,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
             //use enum direction to set player direction
             playerAnimation.SetFloat("PlayerMoveX", currentDirection == PlayerDirection.Right ? 1 : currentDirection == PlayerDirection.Left ? -1 : 0);
             playerAnimation.SetFloat("PlayerMoveY", currentDirection == PlayerDirection.Up ? 1 : currentDirection == PlayerDirection.Down ? -1 : 0);
+            playerAnimation.SetFloat("Movement", _movement.magnitude);
         }
     }
 
@@ -163,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            gameOver = GameObject.Find("GameDefeat").GetComponent<PlayableDirector>();
+            gameOver = GameObject.Find("GameDefeatSplash").GetComponent<PlayableDirector>();
             gameOver.Play();
             StartCoroutine(gameOverSceneLoad(6f));
         }
@@ -195,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
 
     public int getRemainingBears()
     {
-        return GameObject.FindGameObjectsWithTag("Collectable").Length -1;
+        return GameObject.FindGameObjectsWithTag("Collectable").Length;
     }
 
     private IEnumerator gameOverSceneLoad(float _time)

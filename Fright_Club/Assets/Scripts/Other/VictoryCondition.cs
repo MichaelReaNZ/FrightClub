@@ -12,7 +12,7 @@ public class VictoryCondition : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player");
-        gameVictory = GameObject.Find("GameVictory").GetComponent<PlayableDirector>();
+        gameVictory = GameObject.Find("GameVictorySplash").GetComponent<PlayableDirector>();
     }
 
     void OnCollisionEnter2D(Collision2D objectColliding)
