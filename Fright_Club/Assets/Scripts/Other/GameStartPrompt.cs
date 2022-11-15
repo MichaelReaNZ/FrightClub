@@ -3,34 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameStartPrompt : MonoBehaviour
 {
     public static bool GameStartPromptIsActive = false;
     public GameObject GameStart_Prompt;
+    public TextMeshProUGUI Text1;
+    public GameObject OBJ_BTN;
     public GameObject OBJ_BTN_1;
     public GameObject OBJ_BTN_2;
     public GameObject OBJ_BTN_3;
     public GameObject OBJ_BTN_4;
     public GameObject OBJ_BTN_5;
-    public GameObject OBJ_BTN_6;
-    public GameObject OBJ_BTN_7;
-    public GameObject OBJ_BTN_8;
-    public GameObject OBJ_BTN_9;
-    public GameObject OBJ_BTN_10;
-    public GameObject OBJ_BTN_11;
+ 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        /*Scene CurrentScene = SceneManager.GetActiveScene();
+        Scene CurrentScene = SceneManager.GetActiveScene();
         string CurrentSceneName = CurrentScene.name;
 
         if (CurrentSceneName == "GameLevel")
         {
             ActivateGameStartPrompt();
-        }*/
+        }
     }
 
     // Update is called once per frame
@@ -44,6 +42,13 @@ public class GameStartPrompt : MonoBehaviour
         Time.timeScale = 0f;
         GameStartPromptIsActive = true;
         GameStart_Prompt.SetActive(true);
+        Text1.gameObject.SetActive(true);
+        OBJ_BTN.SetActive(true);
+    }
+
+    public void BTN()
+    {
+        OBJ_BTN.SetActive(false);
         OBJ_BTN_1.SetActive(true);
     }
 
@@ -61,6 +66,7 @@ public class GameStartPrompt : MonoBehaviour
 
     public void BTN_3()
     {
+        Text1.gameObject.SetActive(false);
         OBJ_BTN_3.SetActive(false);
         OBJ_BTN_4.SetActive(true);
     }
@@ -74,44 +80,8 @@ public class GameStartPrompt : MonoBehaviour
     public void BTN_5()
     {
         OBJ_BTN_5.SetActive(false);
-        OBJ_BTN_6.SetActive(true);
-    }
-
-    public void BTN_6()
-    {
-        OBJ_BTN_6.SetActive(false);
-        OBJ_BTN_7.SetActive(true);
-    }
-
-    public void BTN_7()
-    {
-        OBJ_BTN_7.SetActive(false);
-        OBJ_BTN_8.SetActive(true);
-    }
-
-    public void BTN_8()
-    {
-        OBJ_BTN_8.SetActive(false);
-        OBJ_BTN_9.SetActive(true);
-    }
-
-    public void BTN_9()
-    {
-        OBJ_BTN_9.SetActive(false);
-        OBJ_BTN_10.SetActive(true);
-    }
-
-    public void BTN_10()
-    {
-        OBJ_BTN_10.SetActive(false);
-        OBJ_BTN_11.SetActive(true);
-    }
-
-    public void BTN_11()
-    {
         GameStart_Prompt.SetActive(false);
         GameStartPromptIsActive = false;
         Time.timeScale = 1f;
-        OBJ_BTN_11.SetActive(false);
     }
 }
