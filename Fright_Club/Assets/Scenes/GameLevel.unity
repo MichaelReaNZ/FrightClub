@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!95 &11371174 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4511150382391359550, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
-  m_PrefabInstance: {fileID: 4511150382384183960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &15254700
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: de6248e3963b578469e049215e4392c2, type: 2}
     - target: {fileID: 3716512314864279714, guid: 4c94be9a40698ac458ba851c7b269f13, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3716512314864279714, guid: 4c94be9a40698ac458ba851c7b269f13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -913,7 +908,7 @@ Transform:
   - {fileID: 1253776388}
   - {fileID: 1502617153}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &298690178
 PrefabInstance:
@@ -2289,7 +2284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1374853445131562370}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &492831758
@@ -2441,11 +2436,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &553694375 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4511150381864111679, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
-  m_PrefabInstance: {fileID: 4511150382384183960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &558561811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2773,9 +2763,9 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 5649094456901430474, guid: 16bec48e36229c747bcbfc3b2ee0444c, type: 2}
-    value: {fileID: 553694375}
+    value: {fileID: 0}
   - key: {fileID: -1853744462290550791, guid: 16bec48e36229c747bcbfc3b2ee0444c, type: 2}
-    value: {fileID: 11371174}
+    value: {fileID: 0}
   - key: {fileID: -4850353298560130955, guid: 16bec48e36229c747bcbfc3b2ee0444c, type: 2}
     value: {fileID: 581447652}
   m_ExposedReferences:
@@ -3024,11 +3014,11 @@ PrefabInstance:
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: CollectablesLeftText
       value: 
-      objectReference: {fileID: 1374853445307066673}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: ShowCollectableCount
       value: 
-      objectReference: {fileID: 1374853445335248153}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576266, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: m_Name
       value: Bear_Office
@@ -3535,11 +3525,11 @@ PrefabInstance:
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: CollectablesLeftText
       value: 
-      objectReference: {fileID: 1374853445307066673}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: ShowCollectableCount
       value: 
-      objectReference: {fileID: 1374853445335248153}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576266, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: m_Name
       value: Bear_Kitchen
@@ -4448,11 +4438,11 @@ PrefabInstance:
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: CollectablesLeftText
       value: 
-      objectReference: {fileID: 1374853445307066673}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: ShowCollectableCount
       value: 
-      objectReference: {fileID: 1374853445335248153}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576266, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: m_Name
       value: Bear_Bathroom
@@ -5309,11 +5299,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7609475274041653276, guid: e104f0ea5c870eb45b761b8001581f5c, type: 3}
   m_PrefabInstance: {fileID: 939673449}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &952023847 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4511150382258241983, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
-  m_PrefabInstance: {fileID: 4511150382384183960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1018157001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5629,11 +5614,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3716512314864279714, guid: 3dc8b14e22c27ba4e8be7705b2ac3a0e, type: 3}
   m_PrefabInstance: {fileID: 1030874664}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1078586685 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4511150383454328741, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
-  m_PrefabInstance: {fileID: 4511150382384183960}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1103902824
 PrefabInstance:
@@ -6584,9 +6564,9 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -7884247770332808891, guid: d721d4c1db41ac64daa164e6f3918d60, type: 2}
-    value: {fileID: 952023847}
+    value: {fileID: 0}
   - key: {fileID: -771807659053251337, guid: d721d4c1db41ac64daa164e6f3918d60, type: 2}
-    value: {fileID: 1078586685}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1253935589
@@ -7200,11 +7180,11 @@ PrefabInstance:
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: CollectablesLeftText
       value: 
-      objectReference: {fileID: 1374853445307066673}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: ShowCollectableCount
       value: 
-      objectReference: {fileID: 1374853445335248153}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576266, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: m_Name
       value: Bear_Lounge
@@ -7400,11 +7380,11 @@ PrefabInstance:
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: CollectablesLeftText
       value: 
-      objectReference: {fileID: 1374853445307066673}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: ShowCollectableCount
       value: 
-      objectReference: {fileID: 1374853445335248153}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576266, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: m_Name
       value: Bear_Master
@@ -7622,11 +7602,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7609475274041653276, guid: 74b193205fe77af43b85861c01e23f97, type: 3}
   m_PrefabInstance: {fileID: 1359513210}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1362291669 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4511150383742226765, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
-  m_PrefabInstance: {fileID: 4511150382384183960}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1378723842
 GameObject:
@@ -7947,7 +7922,7 @@ Transform:
   - {fileID: 302812905}
   - {fileID: 1995451714}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423485722
 GameObject:
@@ -8032,7 +8007,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1423485726
 MonoBehaviour:
@@ -8497,9 +8472,9 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -5536730700660994148, guid: 28c222f2d0501a744bd0972ff3f4c11e, type: 2}
-    value: {fileID: 11371174}
+    value: {fileID: 0}
   - key: {fileID: 9188616074848064398, guid: 28c222f2d0501a744bd0972ff3f4c11e, type: 2}
-    value: {fileID: 1362291669}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!1001 &1512669348
@@ -8835,7 +8810,7 @@ Transform:
   - {fileID: 2012088029}
   - {fileID: 1846066003}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1622632839
 GameObject:
@@ -9524,11 +9499,11 @@ PrefabInstance:
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: CollectablesLeftText
       value: 
-      objectReference: {fileID: 1374853445307066673}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: ShowCollectableCount
       value: 
-      objectReference: {fileID: 1374853445335248153}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576266, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: m_Name
       value: Bear_Main_Bathroom
@@ -10028,7 +10003,7 @@ Transform:
   - {fileID: 596280696}
   - {fileID: 916778640}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1821284313
 GameObject:
@@ -10684,11 +10659,11 @@ PrefabInstance:
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: CollectablesLeftText
       value: 
-      objectReference: {fileID: 1374853445307066673}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576265, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: ShowCollectableCount
       value: 
-      objectReference: {fileID: 1374853445335248153}
+      objectReference: {fileID: 0}
     - target: {fileID: 5981609770804576266, guid: 75de3f90bb137e24a8602e061c138599, type: 3}
       propertyPath: m_Name
       value: Bear_ChildBedroom
@@ -11492,7 +11467,7 @@ Transform:
   - {fileID: 1871675487}
   - {fileID: 782963292}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2112718755
 PrefabInstance:
@@ -11886,27 +11861,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7609475274041653276, guid: 051a013ab41e1704eb3803bf15ae2568, type: 3}
   m_PrefabInstance: {fileID: 2138653808}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1374853445131562370 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3282744468967102234, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
-  m_PrefabInstance: {fileID: 4511150382384183960}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1374853445307066673 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3282744469348127657, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
-  m_PrefabInstance: {fileID: 4511150382384183960}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1374853445335248153 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3282744469300811649, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
-  m_PrefabInstance: {fileID: 4511150382384183960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4511150382384183960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12033,6 +11987,10 @@ PrefabInstance:
     - target: {fileID: 4511150383293659217, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694327526279669897, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9630002bbb78ec24f8da269e3e56c1d6, type: 3}
@@ -13150,7 +13108,7 @@ PrefabInstance:
       objectReference: {fileID: 469583913}
     - target: {fileID: 6967208457869768351, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6967208457869768351, guid: 075d29fe54f283f48a9b33cf19497197, type: 3}
       propertyPath: m_LocalScale.x

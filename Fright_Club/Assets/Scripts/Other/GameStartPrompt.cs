@@ -24,7 +24,6 @@ public class GameStartPrompt : MonoBehaviour
     {
         Scene CurrentScene = SceneManager.GetActiveScene();
         string CurrentSceneName = CurrentScene.name;
-
         if (CurrentSceneName == "GameLevel")
         {
             ActivateGameStartPrompt();
@@ -34,7 +33,7 @@ public class GameStartPrompt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+     
     }
 
     void ActivateGameStartPrompt()
