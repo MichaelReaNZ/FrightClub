@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47712ccce191ed546906ccf790df8fb0, type: 2}
   m_sharedMaterial: {fileID: -5295654285107194045, guid: 47712ccce191ed546906ccf790df8fb0, type: 2}
@@ -1675,17 +1675,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use the arrow keys to move
+  m_text: 'Use the WASD to move
 
 
-    Collect all the teddys on the level and
-    get back to your bed to win
+    Collect all the teddys on the level and get
+    back to your bed to win
 
 
-    Avoid the monsters by shining your light on
-    them
+    Avoid the monsters by shining your light on them
 
-    but beware those that are attracted to the light
+    but
+    beware those that are attracted to the light
 
 '
   m_isRightToLeft: 0

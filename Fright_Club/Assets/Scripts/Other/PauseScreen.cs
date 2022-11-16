@@ -26,11 +26,11 @@ public class PauseScreen : MonoBehaviour
         if (GameStartPromptIsActive == false)
         {
             transform.Translate(Vector3.down * Time.deltaTime);
-            if (Input.GetKeyDown("space") && GameIsActive == true)
+            if (Input.GetKeyDown("escape") && GameIsActive == true)
             {
                 PauseGame();
             }
-            else if (Input.GetKeyDown("space") && GameIsActive == false)
+            else if (Input.GetKeyDown("escape") && GameIsActive == false)
             {
                 ResumeGame();
             }

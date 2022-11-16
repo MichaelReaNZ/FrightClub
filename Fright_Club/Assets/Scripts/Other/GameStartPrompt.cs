@@ -47,7 +47,7 @@ public class GameStartPrompt : MonoBehaviour
 
     public void BTN()
     {
-        OBJ_BTN.SetActive(false);
+        
         OBJ_BTN_1.SetActive(true);
     }
 
@@ -59,6 +59,7 @@ public class GameStartPrompt : MonoBehaviour
 
     public void BTN_2()
     {
+        OBJ_BTN.SetActive(false);
         OBJ_BTN_2.SetActive(false);
         OBJ_BTN_3.SetActive(true);
     }
@@ -66,6 +67,7 @@ public class GameStartPrompt : MonoBehaviour
     public void BTN_3()
     {
         Text1.gameObject.SetActive(false);
+        
         OBJ_BTN_3.SetActive(false);
         OBJ_BTN_4.SetActive(true);
     }
