@@ -21,7 +21,7 @@ public class CollectableCounter : MonoBehaviour
     public void updateCounter()
     {
         BearCount = GameObject.FindGameObjectsWithTag("Collectable").Length - 1;
-        if(BearCount > 1 )
+        if(BearCount > 0 )
             CollectablesLeftText.text = BearCount.ToString() + " left";
         else
         {
