@@ -118,6 +118,7 @@ MonoBehaviour:
   Originalscale: {x: 1, y: 1, z: 1}
   newscale: {x: 10, y: 10, z: 10}
   Hitbox: {x: 1, y: 1, z: 1}
+  HitBoxOffset: {x: 0, y: -7.5}
 --- !u!50 &882416081
 Rigidbody2D:
   serializedVersion: 4
