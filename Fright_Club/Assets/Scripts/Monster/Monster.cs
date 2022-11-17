@@ -51,6 +51,7 @@ public class Monster : MonoBehaviour
     public Vector3 Originalscale;
     public Vector3 newscale;
     public Vector3 Hitbox;
+    public Vector2 HitBoxOffset;
 
 
 
@@ -216,14 +217,18 @@ public class Monster : MonoBehaviour
     {
         if (!isIlluminated)
         {
-            GetComponent<BoxCollider2D>().size = Hitbox;
+            
             GetComponent<SpriteRenderer>().sprite = originalSprite;
+            GetComponent<BoxCollider2D>().size = Hitbox;
+            GetComponent<BoxCollider2D>().offset = HitBoxOffset;
         }
 
         else
         {
-            GetComponent<BoxCollider2D>().size = Hitbox;
+            
             GetComponent<SpriteRenderer>().sprite = newSprite;
+            GetComponent<BoxCollider2D>().size = Hitbox;
+            GetComponent<BoxCollider2D>().offset = HitBoxOffset;
         }
 
     }
