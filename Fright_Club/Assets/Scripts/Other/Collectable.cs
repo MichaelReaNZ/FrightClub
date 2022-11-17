@@ -32,7 +32,7 @@ public class Collectable : MonoBehaviour
             StartCoroutine(destroyObject(0.6f));
 
             GameObject _player = GameObject.Find("Player");
-            if ( GameObject.FindGameObjectsWithTag("Collectable").Length >= 2 )
+            if ( GameObject.FindGameObjectsWithTag("Collectable").Length >= 1 )
             {
                 int bearsLeft = GameObject.FindGameObjectsWithTag("Collectable").Length - 1;
                 _player.GetComponent<PlayerMovement>().printSpeech("'A bear! I feel so much safer!'");
