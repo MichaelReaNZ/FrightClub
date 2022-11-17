@@ -107,7 +107,7 @@ MonoBehaviour:
   secondMark: {x: 0, y: 0}
   thirdMark: {x: 0, y: 0}
   fourthMark: {x: 0, y: 0}
-  HiddenSpeed: 0.15
+  HiddenSpeed: 0.07
   VisibleSpeed: 0
   PlayerDetectionRadius: 2000
   PlayerTrackingRadius: 2000
@@ -118,6 +118,7 @@ MonoBehaviour:
   Originalscale: {x: 1, y: 1, z: 1}
   newscale: {x: 10, y: 10, z: 10}
   Hitbox: {x: 1, y: 1, z: 1}
+  HitBoxOffset: {x: 0, y: 0}
 --- !u!50 &882416081
 Rigidbody2D:
   serializedVersion: 4
