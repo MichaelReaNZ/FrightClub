@@ -6389,11 +6389,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 656530290571444123, guid: 3cff0e9876a64494b8d2a4f879b37ce3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.33
+      value: -12.68
       objectReference: {fileID: 0}
     - target: {fileID: 656530290571444123, guid: 3cff0e9876a64494b8d2a4f879b37ce3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.96
+      value: 4.49
       objectReference: {fileID: 0}
     - target: {fileID: 656530290571444123, guid: 3cff0e9876a64494b8d2a4f879b37ce3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11281,7 +11281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2012088028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12524,7 +12524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0.328, y: 372.641, z: 129.293}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -97.70001, y: -2.399994}
+  m_AnchoredPosition: {x: -130, y: -2.399994}
   m_SizeDelta: {x: 14.650024, y: 153.07898}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &5058289555799309251
